@@ -14,6 +14,7 @@ const publicUrl = '';
 module.exports = {
   entry: [
     path.resolve('./config/polyfills'),
+    'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
     path.resolve('./client/index')
   ],
   output: {
@@ -28,16 +29,19 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         include: path.resolve("./client"),
-        use: [{
-          loader: 'babel-loader',
-          options: { 
-            presets: [
-              'react',
-              ['es2015', { "modules": false }]
-            ],
-            cacheDirectory: true
+        use: [
+          'react-hot-loader', // This enable react hot module loading for js modules
+          {
+            loader: 'babel-loader',
+            options: { 
+              presets: [
+                'react',
+                ['es2015']
+              ],
+              cacheDirectory: true
+            }
           }
-        }],
+        ],
       },
       {
         test: /\.css$/,
@@ -57,6 +61,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       template: path.resolve('./public/index.html'),
-    }) 
+    }),
+    new webpack.HotModuleReplacementPlugin() 
   ]
 }
