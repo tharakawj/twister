@@ -27,6 +27,20 @@ module.exports = {
   module: {
     rules: [
       {
+        exclude: [
+          /\.html$/,
+          /\.(js|jsx)$/,
+          /\.css$/,
+          /\.json$/
+        ],
+        use: [{
+          loader:'url-loader',
+          options:{
+            limit: 10000
+          }
+        }]
+      },
+      {
         test: /\.(js|jsx)$/,
         include: path.resolve("./client"),
         use: [
