@@ -1,7 +1,8 @@
 import webpack from 'webpack';
-import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin';
+import getClientEnvironment from './env';
+import paths from './paths';
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -11,18 +12,22 @@ const publicPath = '/';
 // Omit trailing slash as %PUBLIC_PATH%/xyz looks better than %PUBLIC_PATH%xyz.
 const publicUrl = '';
 
+// Get environment variables to inject into our app.
+var env = getClientEnvironment(publicUrl);
+
 module.exports = {
+  devtool: 'cheap-module-source-map',
   entry: [
-    path.resolve('./config/polyfills'),
+    require.resolve('./polyfills'),
     'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
-    path.resolve('./client/index')
+    paths.appIndexJs
   ],
   output: {
-    path: path.resolve('./build'),
+    path: paths.appBuild,
     // Add /* filename */ comments to generated require()s in the output.
     pathinfo: true,
     publicPath: publicPath,
-    filename: 'bundle.js'
+    filename: 'js/bundle.js'
   },
   module: {
     rules: [
@@ -36,13 +41,14 @@ module.exports = {
         use: [{
           loader:'url-loader',
           options:{
-            limit: 10000
+            limit: 10000,
+            name: 'media/[name].[hash:8].[ext]'
           }
         }]
       },
       {
         test: /\.(js|jsx)$/,
-        include: path.resolve("./client"),
+        include: paths.appSrc,
         use: [
           'react-hot-loader', // This enable react hot module loading for js modules
           {
@@ -74,8 +80,18 @@ module.exports = {
     // Generates an `index.html` file with the <script> injected. 
     new HtmlWebpackPlugin({
       inject: true,
-      template: path.resolve('./public/index.html'),
+      template: paths.appHtml,
     }),
+    // Makes some environment variables available to the JS code, for example:
+    // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
+    new webpack.DefinePlugin(env),
     new webpack.HotModuleReplacementPlugin() 
-  ]
+  ],
+  // Some libraries import Node modules but don't use them in the browser.
+  // Tell Webpack to provide empty mocks for them so importing them works.
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  }
 }
