@@ -1,10 +1,15 @@
 import Express from 'express';
+import session from 'express-session';
+import passport from 'passport';
+
 import path from 'path';
 import historyApiFallback from 'connect-history-api-fallback';
 import openBrowser from 'react-dev-utils/openBrowser';
 
 import paths from '../config/paths';
 import serverConfig from '../config/server.config';
+
+import auth from './routes/auth';
 
 // Webpack Requirements
 import webpack from 'webpack';
@@ -13,6 +18,13 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 
 // Initialize the Express App
 const app = new Express();
+
+app.use(session({ secret: 'abc', resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Server routes
+app.use('/auth', auth);
 
 // Run Webpack middleware in development mode
 if (process.env.NODE_ENV === 'development') {
