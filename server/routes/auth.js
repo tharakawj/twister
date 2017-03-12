@@ -1,13 +1,11 @@
 import express from 'express';
-
-import config from '../../config/server.config';
-
 import passport from 'passport';
 import {Strategy as TwitterStrategy} from 'passport-twitter';
 import jwt from 'jsonwebtoken';
+import expressJwt from 'express-jwt';
 
-let user = {},
-    accessToken, accessTokenSecret;
+import userStore from '../userStore'
+import config from '../../config/server.config';
 
 passport.use(new TwitterStrategy({
     consumerKey: config.twitterConsumerKey,
@@ -15,12 +13,8 @@ passport.use(new TwitterStrategy({
     callbackURL: "http://localhost:8000/auth/twitter/callback"
   },
   function(token, tokenSecret, profile, done) {
-    accessToken = token;
-    accessTokenSecret = tokenSecret;
-    user.id = profile.id;
-    user.name = profile.name;
-    user.username = profile.screen_name;
-    done(null, user);
+    userStore.set(profile.id, { token, tokenSecret});
+    done(null, profile);
   }
 ));
 
@@ -42,6 +36,12 @@ authRouter.get('/twitter/callback', passport.authenticate('twitter', { failureRe
     res.redirect('/auth/success?id_token=' + jwtoken);
   }
 );
+
+authRouter.post('/twitter/signout', expressJwt({secret: config.jwtSecret}),
+  function(req, res){
+    userStore.remove(req.user.id);
+    res.sendStatus(200);
+});
 
 
 export default authRouter;

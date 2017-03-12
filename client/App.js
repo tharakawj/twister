@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
-import Header from './components/common/Header'
+import { connect } from 'react-redux';
+import Header from './components/common/Header';
+import { initAuth } from './actions/AuthActions';
 import './App.css';
 import logo from './logo.svg';
 
 class App extends Component {
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(initAuth());
+  }
+
   render() {
     return (
       <div className="container-fluid">
@@ -15,4 +23,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);

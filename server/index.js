@@ -10,6 +10,7 @@ import paths from '../config/paths';
 import serverConfig from '../config/server.config';
 
 import auth from './routes/auth';
+import api from './routes/api';
 
 // Webpack Requirements
 import webpack from 'webpack';
@@ -25,6 +26,7 @@ app.use(passport.session());
 
 // Server routes
 app.use('/auth', auth);
+app.use('/api', api);
 
 // Run Webpack middleware in development mode
 if (process.env.NODE_ENV === 'development') {
