@@ -30,7 +30,7 @@ export function signoutUser(accessToken) {
 
 function fetchAuthedUser(accessToken, shouldShowStream) {
   return dispatch =>
-    fetch('/api/me',{
+    fetch('/api/account/verify_credentials?skip_status=true',{
       headers: {
         "Authorization": `Bearer ${accessToken}`
       }

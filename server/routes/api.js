@@ -9,44 +9,40 @@ const apiRouter = express.Router();
 
 apiRouter.use(expressJwt({secret: config.jwtSecret}));
 
-apiRouter.get('/me', function(req, res){
+const twitterEndPoints = [
+  'account/verify_credentials',
+  'statuses/home_timeline'
+];
 
-  const { token, tokenSecret } = userStore.get(req.user.id);
-  var T = new Twit({
-    consumer_key: config.twitterConsumerKey,
-    consumer_secret: config.twitterConsumerSecret,
-    access_token: token,
-    access_token_secret: tokenSecret,
-  });
+function removeFirstSlash(text){
+  if (text.indexOf('/') === 0)
+    return text.replace('/','');
+  return text;
+}
 
-  T.get('account/verify_credentials', { skip_status: true })
-  .catch(function (err) {
-    console.log('caught error', err.stack)
-  })
-  .then(function (result) {
-    res.send(result.data);
-  });
+apiRouter.get('/*', function(req, res){
 
-});
+  const path = removeFirstSlash(req.path);
 
-apiRouter.get('/tweets', function(req, res){
+  if(twitterEndPoints.indexOf(path) === -1){
+    res.sendStatus(404);
+  }else{
+    const { token, tokenSecret } = userStore.get(req.user.id);
+    var T = new Twit({
+      consumer_key: config.twitterConsumerKey,
+      consumer_secret: config.twitterConsumerSecret,
+      access_token: token,
+      access_token_secret: tokenSecret,
+    });
 
-  const { token, tokenSecret } = userStore.get(req.user.id);
-  var T = new Twit({
-    consumer_key: config.twitterConsumerKey,
-    consumer_secret: config.twitterConsumerSecret,
-    access_token: token,
-    access_token_secret: tokenSecret,
-  });
-
-  T.get('statuses/home_timeline')
-  .catch(function (err) {
-    console.log('caught error', err.stack)
-  })
-  .then(function (result) {
-    res.send(result.data);
-  });
-
+    T.get(path, req.params)
+    .catch(function (err) {
+      console.log('caught error', err.stack)
+    })
+    .then(function (result) {
+      res.send(result.data);
+    });
+  }
 });
 
 export default apiRouter;

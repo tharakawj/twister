@@ -5,7 +5,7 @@ export function fetchLatestTweets(){
 
     const { auth } = getState();
 
-    fetch('/api/tweets', {
+    fetch('/api/statuses/home_timeline', {
       headers: {
         "Authorization": `Bearer ${auth.accessToken}`
       }
@@ -22,4 +22,10 @@ function receiveLatestTweets(tweets) {
     type: types.RECEIVE_LATEST_TWEETS,
     tweets,
   };
+}
+
+export function fetchLists(){
+  return (dispatch, getState) => {
+    
+  }
 }
