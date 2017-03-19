@@ -11,7 +11,9 @@ apiRouter.use(expressJwt({secret: config.jwtSecret}));
 
 const twitterEndPoints = [
   'account/verify_credentials',
-  'statuses/home_timeline'
+  'statuses/home_timeline',
+  'lists/list',
+  'lists/statuses'
 ];
 
 function removeFirstSlash(text){
@@ -35,7 +37,7 @@ apiRouter.get('/*', function(req, res){
       access_token_secret: tokenSecret,
     });
 
-    T.get(path, req.params)
+    T.get(path, req.query)
     .catch(function (err) {
       console.log('caught error', err.stack)
     })

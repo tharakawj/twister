@@ -1,12 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchLatestTweets } from '../../actions/TweetsActions';
+import { fetchTweets } from '../../actions/TweetsActions';
 
 class TweetsList extends React.Component {
 
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchLatestTweets());
+    const { dispatch, listId } = this.props;
+    dispatch(fetchTweets(listId));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { dispatch, listId } = this.props;
+    if(nextProps.listId !== listId){
+      dispatch(fetchTweets(nextProps.listId));
+    }
   }
 
   render() {
@@ -33,7 +40,7 @@ class TweetsList extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    tweets: state.tweets.latestTweets
+    tweets: state.tweets.tweets
   };
 }
 

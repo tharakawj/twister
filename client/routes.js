@@ -9,6 +9,7 @@ import NoMatch from './components/common/NoMatch';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage}/>
+    <Route path="lists/:listId" component={HomePage}/>
     <Route path="about" component={AboutPage}/>
     <Route path="auth/:result" component={AuthHandler}/>
     <Route path="*" component={NoMatch}/>

@@ -2,13 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import TweetsList from '../common/TweetsList';
+import ListsList from '../common/ListsList';
 
 class HomePage extends React.Component {
   render() {
     return (
       <div>
         {this.props.user ? (
-          <TweetsList/>
+          <div className="container">
+            <div className="row">
+              <div className="col-md-2">
+                <ListsList/>
+              </div>
+              <div className="col-md-10">
+                <TweetsList listId={this.props.params.listId}/>
+              </div>
+            </div>
+          </div>
         ) : (
           <div className="jumbotron">
             <h1>Twister</h1>
@@ -21,7 +31,7 @@ class HomePage extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownParams) {
   return {
     user: state.auth.user
   };

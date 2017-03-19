@@ -1,14 +1,20 @@
 import * as types from '../constants/ActionTypes';
 
 const initialState = {
-  latestTweets: null
+  tweets: null,
+  lists:null
 }
 
 export default function authReducer(state = initialState, action){
   switch(action.type) {
-    case types.RECEIVE_LATEST_TWEETS:
+    case types.RECEIVE_TWEETS:
       return Object.assign({}, state, {
-        latestTweets: action.tweets,
+        tweets: action.tweets,
+      });
+
+    case types.RECEIVE_LISTS:
+      return Object.assign({}, state, {
+        lists: [{name:"All"},...action.lists]
       });
 
     default:
