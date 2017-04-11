@@ -17,7 +17,7 @@ class ListsList extends React.Component {
           <ul>
             {this.props.lists.map((list, index) =>
               <li key={index}>
-                <Link to={ list.id_str? "/lists/" + list.id_str : "/"} activeClassName="active">{list.name}</Link>
+                <Link to={ list.id_str ? `/lists/${list.id_str}` : "/"} activeClassName="active">{list.name}</Link>
               </li>
           )}
           </ul>

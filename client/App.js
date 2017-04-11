@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Header from './components/common/Header';
 import { initAuth } from './actions/AuthActions';
 import './App.css';
-import logo from './logo.svg';
 
 class App extends Component {
 
@@ -14,9 +13,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Header loading={this.props.loading}/>
+      <div className="container">
+        <Header/>
         {this.props.children}
       </div>
     );

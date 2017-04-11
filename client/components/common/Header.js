@@ -17,13 +17,15 @@ class Header extends React.Component {
 
   render() {
     return (
-      <nav>
-        <IndexLink to="/" activeClassName="active">Home</IndexLink>
-        {" | "}
-        <Link to="/about" activeClassName="active">About</Link>
-        {" | "}
-        <UserHeader user={this.props.user} signoutUser={this.signoutUser}/>
-      </nav>
+      <div className="row">
+        <nav>
+          <IndexLink to="/" activeClassName="active">Home</IndexLink>
+          {" | "}
+          <Link to="/about" activeClassName="active">About</Link>
+          {" | "}
+          <UserHeader user={this.props.user} signoutUser={this.signoutUser}/>
+        </nav>
+      </div>
     );
   }
 }

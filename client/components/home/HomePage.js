@@ -9,14 +9,12 @@ class HomePage extends React.Component {
     return (
       <div>
         {this.props.user ? (
-          <div className="container">
-            <div className="row">
-              <div className="col-md-2">
-                <ListsList/>
-              </div>
-              <div className="col-md-10">
-                <TweetsList listId={this.props.params.listId}/>
-              </div>
+          <div className="row">
+            <div className="col-md-2">
+              <ListsList/>
+            </div>
+            <div className="col-md-10">
+              <TweetsList listId={this.props.params.listId}/>
             </div>
           </div>
         ) : (
