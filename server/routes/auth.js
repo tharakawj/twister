@@ -13,8 +13,9 @@ passport.use(new TwitterStrategy({
     callbackURL: "http://localhost:8000/auth/twitter/callback"
   },
   function(token, tokenSecret, profile, done) {
-    userStore.set(profile.id, { token, tokenSecret});
-    done(null, profile);
+    userStore.set(profile.id, { token, tokenSecret }, function(){
+      done(null, profile);
+    });
   }
 ));
 
