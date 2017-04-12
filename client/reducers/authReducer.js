@@ -3,7 +3,7 @@ import * as types from '../constants/ActionTypes';
 const initialState = {
   accessToken: null,
   user: null
-}
+};
 
 export default function authReducer(state = initialState, action){
   switch(action.type) {

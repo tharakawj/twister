@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchTweets } from '../../actions/TweetsActions';
 
-class TweetsList extends React.Component {
+export class TweetsList extends React.Component {
 
   componentDidMount() {
     const { dispatch, listId } = this.props;

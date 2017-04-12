@@ -6,6 +6,8 @@ export function initAuth() {
     const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
     if (accessToken) {
       return dispatch(authUser(accessToken));
+    }else{
+      return dispatch(appLoaded());
     }
     return null;
   };
@@ -45,6 +47,7 @@ function receiveAuthedUserPre(accessToken, user) {
   return dispatch => {
     dispatch(receiveAccessToken(accessToken));
     dispatch(receiveAuthedUser(user));
+    dispatch(appLoaded());
   };
 }
 
@@ -72,6 +75,12 @@ function receiveAuthedUser(user) {
 function resetAuthedPost() {
   return {
     type: types.RESET_AUTHED
+  };
+}
+
+function appLoaded() {
+  return {
+    type: types.APP_LOADED
   };
 }
 

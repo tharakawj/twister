@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
+import Spinner from './Spinner';
 import { ACCESS_TOKEN_KEY } from '../../constants/AppConstants';
 import { authUser } from '../../actions/AuthActions';
 
@@ -23,9 +24,7 @@ class AuthHandler extends React.Component {
 
   render() {
     return (
-      <div>
-        Authenticating user...
-      </div>
+      <Spinner/>
     );
   }
 }
