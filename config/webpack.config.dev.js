@@ -53,11 +53,7 @@ module.exports = {
           'react-hot-loader', // This enable react hot module loading for js modules
           {
             loader: 'babel-loader',
-            options: { 
-              presets: [
-                'react',
-                ['es2015']
-              ],
+            options: {
               cacheDirectory: true
             }
           }
