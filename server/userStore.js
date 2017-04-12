@@ -4,7 +4,7 @@ const cache = new CachemanFile({});
 
 export default {
   set: (key, value, callback) => {
-    cache.set(key, value, function(error){
+    cache.set(key, value, 86400 * 30, function(error){
       if(error) throw error;
       if(callback) callback();
     });
