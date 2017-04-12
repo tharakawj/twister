@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import TweetsList from '../common/TweetsList';
 import ListsList from '../common/ListsList';
 
-class HomePage extends React.Component {
+export class HomePage extends React.Component {
   render() {
     return (
       <div>
