@@ -29,12 +29,17 @@ apiRouter.get('/*', function(req, res){
   if(twitterEndPoints.indexOf(path) === -1){
     res.sendStatus(404);
   }else{
-    userStore.get(req.user.id, function({ token, tokenSecret }){
+    userStore.get(req.user.id, function(authObj){
+
+      if (!authObj) {
+        return res.sendStatus(403);
+      }
+
       var T = new Twit({
         consumer_key: config.twitterConsumerKey,
         consumer_secret: config.twitterConsumerSecret,
-        access_token: token,
-        access_token_secret: tokenSecret,
+        access_token: authObj.token,
+        access_token_secret: authObj.tokenSecret,
       });
 
       T.get(path, req.query)

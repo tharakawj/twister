@@ -28,16 +28,17 @@ export function signoutUser(accessToken) {
     .catch(err => { throw err; });
 }
 
-function fetchAuthedUser(accessToken, shouldShowStream) {
+function fetchAuthedUser(accessToken) {
   return dispatch =>
     fetch('/api/account/verify_credentials?skip_status=true',{
       headers: {
         "Authorization": `Bearer ${accessToken}`
       }
     })
+    .then(handleErrors)
     .then(response => response.json())
     .then(json => dispatch(receiveAuthedUserPre(accessToken, json)))
-    .catch(err => { throw err; });
+    .catch(err => { dispatch(resetAuthed()) });
 }
 
 function receiveAuthedUserPre(accessToken, user) {
@@ -45,6 +46,13 @@ function receiveAuthedUserPre(accessToken, user) {
     dispatch(receiveAccessToken(accessToken));
     dispatch(receiveAuthedUser(user));
   };
+}
+
+function resetAuthed() {
+  return dispatch => {
+    localStorage.removeItem(ACCESS_TOKEN_KEY);
+    dispatch(resetAuthedPost());
+  }
 }
 
 function receiveAccessToken(accessToken) {
@@ -61,8 +69,15 @@ function receiveAuthedUser(user) {
   };
 }
 
-function resetAuthed() {
+function resetAuthedPost() {
   return {
     type: types.RESET_AUTHED
   };
+}
+
+function handleErrors(response) {
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response;
 }
