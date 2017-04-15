@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Tweet from './Tweet';
 import { fetchTweets } from '../../actions/TweetsActions';
 
 export class TweetsList extends React.Component {
@@ -17,24 +18,22 @@ export class TweetsList extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        { this.props.tweets ? (
-          <ul>
-            {this.props.tweets.map((tweet) =>
-              <li key={tweet.id_str}>
-                <p>
-                  {tweet.text}
-                </p>
+    const { tweets } = this.props;
+    if(tweets){
+      return (
+        <ul className="tweets-list">
+          {
+            tweets.map((tweet) =>
+              <li key={tweet.id_str} className="tweets-list-item">
+                <Tweet tweet={tweet}/>
               </li>
-          )}
-          </ul>
-        ) :
-          (<p>Loading tweets...</p>)
-        }
-        
-      </div>
-    );
+            )
+          }
+        </ul>
+      );
+    }else{
+      return (<p>Loading tweets...</p>);
+    }
   }
 }
 

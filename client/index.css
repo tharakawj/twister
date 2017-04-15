@@ -1,11 +1,96 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  padding-top: 70px;
 }
 
 .spinner-container {
     padding: 20px 0;
-    margin: 0px auto;
-    width: 100%;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+}
+
+.logo{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.navbar-brand>img {
+  display: inline-block;
+}
+
+.brand-text{
+  font-size: 26px;
+  vertical-align: middle;
+}
+
+.user-circle{
+  margin-top: 9px;
+}
+
+.user-circle > button{
+  padding: 0px;
+  border: none;
+}
+
+.user-circle .dropdown-menu{
+  left: -65px;
+  top: 40px;
+}
+
+.tweets-list{
+  padding: 0px;
+  list-style: none;
+}
+
+.tweets-list-item{
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: -1px;
+}
+
+.tweet{
+  padding: 10px;
+}
+
+.tweet:hover{
+  color: #555;
+  text-decoration: none;
+  background-color: #f5f5f5;
+}
+
+.tweet img{
+  width: 48px;
+  height: 48px;
+  border-radius: 5px;
+}
+
+.dropdown-menu:after, .dropdown-menu:before {
+  bottom: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.dropdown-menu:after {
+  border-color: rgba(255, 255, 255, 0);
+  border-bottom-color: #ffffff;
+  border-width: 10px;
+  margin-left: -10px;
+}
+.dropdown-menu:before {
+  border-color: rgba(255, 0, 0, 0);
+  border-bottom-color: rgba(0,0,0,.15);
+  box-shadow: 0 6px 12px -12px rgba(0,0,0,.175);
+  border-width: 11px;
+  margin-left: -11px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 900px;
+  }
 }
