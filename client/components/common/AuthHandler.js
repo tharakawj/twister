@@ -1,7 +1,8 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import { Redirect } from 'react-router-dom';
+import queryString from 'query-string';
 import Spinner from './Spinner';
 import { ACCESS_TOKEN_KEY } from '../../constants/AppConstants';
 import { authUser } from '../../actions/AuthActions';
@@ -9,23 +10,16 @@ import { authUser } from '../../actions/AuthActions';
 class AuthHandler extends React.Component {
 
   componentDidMount() {
-    let token = this.props.location.query.id_token;
-    if(this.props.params.result === 'success' && token) {
+    const queryParams = queryString.parse(this.props.location.search);
+    let token = queryParams.id_token;
+    if(this.props.match.params.result === 'success' && token) {
       localStorage.setItem(ACCESS_TOKEN_KEY, token);
       this.props.authUser(token);
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.user) {
-      browserHistory.push('/');
-    }
-  }
-
   render() {
-    return (
-      <Spinner/>
-    );
+    return this.props.user ? (<Redirect to="/" />) : (<Spinner/>);
   }
 }
 

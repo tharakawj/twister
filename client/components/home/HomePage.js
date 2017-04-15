@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import LandingPage from '../common/LandingPage';
 import TweetsList from '../common/TweetsList';
 import ListsList from '../common/ListsList';
@@ -11,10 +12,16 @@ export class HomePage extends React.Component {
         {this.props.user ? (
           <div className="row">
             <div className="col-md-3">
-              <ListsList/>
+              {/*  
+                This 'id' prop is just to make sure that ListsList re-render when
+                the list route changes depite the fact that react-redux
+                connect have implemented shouldComponentUpdate
+                https://github.com/reactjs/react-redux/issues/507
+              */}
+              <ListsList id={this.props.match.params.listId}/>
             </div>
             <div className="col-md-8">
-              <TweetsList listId={this.props.params.listId}/>
+              <TweetsList listId={this.props.match.params.listId}/>
             </div>
           </div>
         ) : ( <LandingPage/>) }

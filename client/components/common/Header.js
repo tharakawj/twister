@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import { bindActionCreators } from 'redux';
-import { Link, IndexLink } from 'react-router';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signoutUser } from '../../actions/AuthActions';
 import twitterLogo from '../../twitter.svg';
@@ -73,10 +73,10 @@ class Header extends React.Component {
       <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container">
           <div className="navbar-header">
-            <IndexLink to="/" className="logo navbar-brand">
+            <Link to="/" className="logo navbar-brand">
               <img src={twitterLogo} width="40"/>
               <span className="brand-text">Twister</span>
-            </IndexLink>
+            </Link>
           </div>
           <div className="pull-right">
             {userSection}

@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Tweet from './Tweet';
+
 import { fetchTweets } from '../../actions/TweetsActions';
+
+import Tweet from './Tweet';
 
 export class TweetsList extends React.Component {
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, IndexLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import { fetchLists } from '../../actions/TweetsActions';
 
 class ListsList extends React.Component {
@@ -14,12 +14,12 @@ class ListsList extends React.Component {
     let link = null;
     if(list.id_str){
       link = (
-        <Link key={index} to={ `/lists/${list.id_str}`} 
-          className="list-group-item" activeClassName="active">{list.name}</Link>);
+        <NavLink key={index} to={ `/lists/${list.id_str}`} 
+          className="list-group-item" activeClassName="active">{list.name}</NavLink>);
     }else{
       link = (
-        <IndexLink key={index} to="/"
-        className="list-group-item" activeClassName="active">{list.name}</IndexLink>);
+        <NavLink exact key={index} to="/"
+        className="list-group-item" activeClassName="active">{list.name}</NavLink>);
     }
     return link
   }
@@ -31,9 +31,9 @@ class ListsList extends React.Component {
         <div className="list-group">
           { lists.map((list, index) => this.renderLink(list, index))}
         </div>
-      )
+      );
     }else{
-      return (<p>Loading lists...</p>)
+      return (<p>Loading lists...</p>);
     }
   }
 }
