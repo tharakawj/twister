@@ -7,7 +7,7 @@ import { initAuth } from './actions/AuthActions';
 import Header from './components/common/Header';
 import Spinner from './components/common/Spinner';
 import HomePage from './components/home/HomePage';
-import AboutPage from './components/about/AboutPage';
+import ManagePage from './components/manage/ManagePage';
 import AuthHandler from './components/common/AuthHandler';
 import NoMatch from './components/common/NoMatch';
 
@@ -30,7 +30,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route path="/lists/:listId" component={HomePage} />
-              <Route path="/about" component={AboutPage}/>
+              <Route path="/manage" component={ManagePage}/>
               <Route path="/auth/:result" component={AuthHandler}/>
               <Route component={NoMatch} />
             </Switch>

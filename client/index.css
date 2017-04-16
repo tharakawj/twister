@@ -89,6 +89,11 @@ body {
   margin-left: -11px;
 }
 
+.manage-link{
+  float: right;
+  margin-top: 15px;
+}
+
 @media (min-width: 768px) {
   .container {
     max-width: 900px;
