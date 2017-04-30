@@ -13,7 +13,8 @@ const twitterEndPoints = [
   'account/verify_credentials',
   'statuses/home_timeline',
   'lists/list',
-  'lists/statuses'
+  'lists/statuses',
+  'friends/list'
 ];
 
 function removeFirstSlash(text){

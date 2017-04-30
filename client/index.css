@@ -99,3 +99,22 @@ body {
     max-width: 900px;
   }
 }
+
+.friends-list ul {
+  border: 1px solid #555;
+  width: 100%;
+  height: 650px;
+  overflow-y: auto;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0px;
+}
+
+.friends-list li {
+  width: 260px;
+  height: 90px;
+  background: #ddd;
+  display: inline-block;
+  margin: 5px;
+}

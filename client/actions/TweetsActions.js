@@ -16,7 +16,6 @@ export function fetchTweets(listId){
     .then(response => response.json())
     .then(response => dispatch(receiveTweets(response)))
     .catch(err => { throw err; });
-
   };
 }
 
@@ -27,7 +26,7 @@ function receiveTweets(tweets) {
   };
 }
 
-export function fetchLists(){
+export function fetchLists() {
   return (dispatch, getState) => {
     const { auth } = getState();
 
@@ -39,12 +38,34 @@ export function fetchLists(){
     .then(response => response.json())
     .then(response => dispatch(receiveLists(response)))
     .catch(err => { throw err; });
-  }
+  };
 }
 
 function receiveLists(lists) {
   return {
     type: types.RECEIVE_LISTS,
     lists,
+  };
+}
+
+export function fetchFriends() {
+  return (dispact, getState) => {
+    const { auth } = getState();
+
+    fetch('/api/friends/list?count=100', {
+      headers: {
+        "Authorization": `Bearer ${auth.accessToken}`
+      }
+    })
+    .then(response => response.json())
+    .then(response => dispact(recieveFriends(response.users)))
+    .catch(err => { throw err; })
+  };
+}
+
+function recieveFriends(friends){
+  return {
+    type: types.RECEIVE_FRIENDS,
+    friends
   };
 }

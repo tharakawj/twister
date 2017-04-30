@@ -7,3 +7,4 @@ export const RESET_AUTHED = 'RESET_AUTHED';
 
 export const RECEIVE_TWEETS = 'RECEIVE_TWEETS';
 export const RECEIVE_LISTS = 'RECEIVE_LISTS';
+export const RECEIVE_FRIENDS = 'RECEIVE_FRIENDS';
