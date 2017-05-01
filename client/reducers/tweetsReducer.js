@@ -22,6 +22,11 @@ export default function authReducer(state = initialState, action){
       return Object.assign({}, state, {
         friends: action.friends
       })
+    case types.RECEIVE_MEMBERS:
+      return {
+        ...state,
+        lists: state.lists.map(list => list.id_str === action.listId ? {...list, members: action.members } : list)
+      }
     default:
       return state;
   }

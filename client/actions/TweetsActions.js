@@ -49,16 +49,16 @@ function receiveLists(lists) {
 }
 
 export function fetchFriends() {
-  return (dispact, getState) => {
+  return (dispatch, getState) => {
     const { auth } = getState();
 
-    fetch('/api/friends/list?count=100', {
+    fetch(`/api/friends/list?count=100`, {
       headers: {
         "Authorization": `Bearer ${auth.accessToken}`
       }
     })
     .then(response => response.json())
-    .then(response => dispact(recieveFriends(response.users)))
+    .then(response => dispatch(recieveFriends(response.users)))
     .catch(err => { throw err; })
   };
 }
@@ -68,4 +68,27 @@ function recieveFriends(friends){
     type: types.RECEIVE_FRIENDS,
     friends
   };
+}
+
+export function fetchMembers(listId){
+  return (dispatch, getState) => {
+    const { auth } = getState();
+    
+    fetch(`/api/lists/members?list_id=${listId}`, {
+      headers: {
+        "Authorization": `Bearer ${auth.accessToken}`
+      }      
+    })
+    .then(response => response.json())
+    .then(response => dispatch(recieveMembers(listId, response.users)))
+    .catch(err => { throw err; })
+  }
+}
+
+function recieveMembers(listId, members) {
+  return {
+    type: types.RECEIVE_MEMBERS,
+    listId,
+    members
+  }
 }
