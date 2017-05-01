@@ -1,12 +1,11 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import { fetchTweets } from '../../actions/TweetsActions';
+import { fetchTweets } from "../../actions/TweetsActions";
 
-import Tweet from './Tweet';
+import Tweet from "./Tweet";
 
 export class TweetsList extends React.Component {
-
   componentDidMount() {
     const { dispatch, listId } = this.props;
     dispatch(fetchTweets(listId));
@@ -14,27 +13,25 @@ export class TweetsList extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { dispatch, listId } = this.props;
-    if(nextProps.listId !== listId){
+    if (nextProps.listId !== listId) {
       dispatch(fetchTweets(nextProps.listId));
     }
   }
 
   render() {
     const { tweets } = this.props;
-    if(tweets){
+    if (tweets) {
       return (
         <ul className="tweets-list">
-          {
-            tweets.map((tweet) =>
-              <li key={tweet.id_str} className="tweets-list-item">
-                <Tweet tweet={tweet}/>
-              </li>
-            )
-          }
+          {tweets.map(tweet => (
+            <li key={tweet.id_str} className="tweets-list-item">
+              <Tweet tweet={tweet} />
+            </li>
+          ))}
         </ul>
       );
-    }else{
-      return (<p>Loading tweets...</p>);
+    } else {
+      return <p>Loading tweets...</p>;
     }
   }
 }

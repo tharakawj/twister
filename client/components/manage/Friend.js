@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-const Friend = ({friend}) => {
+const Friend = ({ friend }) => {
   return (
     <li>
-      { friend.name }
+      {friend.name}
     </li>
   );
 };

@@ -1,6 +1,6 @@
-import React from 'react';
-import FriendList from './FriendList';
-import ListCarousel from './ListCarousel';
+import React from "react";
+import FriendList from "./FriendList";
+import ListCarousel from "./ListCarousel";
 
 class ManagePage extends React.Component {
   render() {
@@ -8,8 +8,8 @@ class ManagePage extends React.Component {
       <div>
         <h1>Manage Lists</h1>
         <div>
-          <FriendList/>
-          <ListCarousel/>
+          <FriendList />
+          <ListCarousel />
         </div>
       </div>
     );

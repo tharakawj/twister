@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import { fetchLists, fetchMembers } from '../../actions/TweetsActions';
+import { fetchLists, fetchMembers } from "../../actions/TweetsActions";
 
-import List from './List';
-
+import List from "./List";
 
 class ListCarousel extends Component {
   componentDidMount() {
@@ -13,28 +12,30 @@ class ListCarousel extends Component {
 
   render() {
     const { lists, fetchMembers } = this.props;
-    if(lists){
+    if (lists) {
       return (
         <div className="list-carousel">
           <ul>
-            {
-              lists.map((list, index) => (<li key={list.id_str}>
-                <List list={list} fetchMembers={fetchMembers}/>
-              </li>))
-            }
+            {lists.map((list, index) => (
+              <li key={list.id_str}>
+                <List list={list} fetchMembers={fetchMembers} />
+              </li>
+            ))}
           </ul>
         </div>
       );
-    }else{
-      return (<p>Loading lists...</p>);
+    } else {
+      return <p>Loading lists...</p>;
     }
   }
 }
 
-function mapStateToPops(state, ownParams){
+function mapStateToPops(state, ownParams) {
   return {
     lists: state.tweets.lists
-  }
+  };
 }
 
-export default connect(mapStateToPops, { fetchLists, fetchMembers })(ListCarousel);
+export default connect(mapStateToPops, { fetchLists, fetchMembers })(
+  ListCarousel
+);

@@ -1,12 +1,12 @@
-import { ACCESS_TOKEN_KEY } from '../constants/AppConstants';
-import * as types from '../constants/ActionTypes';
+import { ACCESS_TOKEN_KEY } from "../constants/AppConstants";
+import * as types from "../constants/ActionTypes";
 
 export function initAuth() {
   return dispatch => {
     const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
     if (accessToken) {
       return dispatch(authUser(accessToken));
-    }else{
+    } else {
       return dispatch(appLoaded());
     }
     return null;
@@ -14,36 +14,37 @@ export function initAuth() {
 }
 
 export function authUser(accessToken) {
-  return dispatch =>
-    dispatch(fetchAuthedUser(accessToken));
+  return dispatch => dispatch(fetchAuthedUser(accessToken));
 }
 
 export function signoutUser(accessToken) {
   return dispatch =>
-    fetch('/auth/twitter/signout', {
-      method: 'POST',
+    fetch("/auth/twitter/signout", {
+      method: "POST",
       headers: {
-        "Authorization": `Bearer ${accessToken}`
+        Authorization: `Bearer ${accessToken}`
       }
     })
-    .then(response => dispatch(resetAuthed()))
-    .catch(err => { throw err; });
+      .then(response => dispatch(resetAuthed()))
+      .catch(err => {
+        throw err;
+      });
 }
 
 function fetchAuthedUser(accessToken) {
   return dispatch =>
-    fetch('/api/account/verify_credentials?skip_status=true',{
+    fetch("/api/account/verify_credentials?skip_status=true", {
       headers: {
-        "Authorization": `Bearer ${accessToken}`
+        Authorization: `Bearer ${accessToken}`
       }
     })
-    .then(handleErrors)
-    .then(response => response.json())
-    .then(json => dispatch(receiveAuthedUserPre(accessToken, json)))
-    .catch(err => { 
-      console.log(err);
-      dispatch(resetAuthed())
-     });
+      .then(handleErrors)
+      .then(response => response.json())
+      .then(json => dispatch(receiveAuthedUserPre(accessToken, json)))
+      .catch(err => {
+        console.log(err);
+        dispatch(resetAuthed());
+      });
 }
 
 function receiveAuthedUserPre(accessToken, user) {
@@ -58,20 +59,20 @@ function resetAuthed() {
   return dispatch => {
     localStorage.removeItem(ACCESS_TOKEN_KEY);
     dispatch(resetAuthedPost());
-  }
+  };
 }
 
 function receiveAccessToken(accessToken) {
   return {
     type: types.RECEIVE_ACCESS_TOKEN,
-    accessToken,
+    accessToken
   };
 }
 
 function receiveAuthedUser(user) {
   return {
     type: types.RECEIVE_AUTHED_USER,
-    user,
+    user
   };
 }
 
@@ -88,8 +89,8 @@ function appLoaded() {
 }
 
 function handleErrors(response) {
-    if (!response.ok) {
-        throw Error(response.statusText);
-    }
-    return response;
+  if (!response.ok) {
+    throw Error(response.statusText);
+  }
+  return response;
 }

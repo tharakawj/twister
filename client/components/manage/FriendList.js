@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import { fetchFriends } from '../../actions/TweetsActions';
+import { fetchFriends } from "../../actions/TweetsActions";
 
-import Friend from './Friend';
+import Friend from "./Friend";
 
 class FriendList extends Component {
-
   constructor(props) {
     super(props);
   }
@@ -18,19 +17,18 @@ class FriendList extends Component {
 
   render() {
     const { friends } = this.props;
-    if(friends){
+    if (friends) {
       return (
         <div className="friends-list">
           <ul>
-            { 
-              friends.map(friend =>
-                (<Friend key={friend.id_str} friend={friend}/>))
-            }
+            {friends.map(friend => (
+              <Friend key={friend.id_str} friend={friend} />
+            ))}
           </ul>
         </div>
       );
-    }else{
-      return (<p>Loading friends...</p>);
+    } else {
+      return <p>Loading friends...</p>;
     }
   }
 }
@@ -38,7 +36,7 @@ class FriendList extends Component {
 function mapStateToProps(state, ownParmas) {
   return {
     friends: state.tweets.friends
-  }
+  };
 }
 
 export default connect(mapStateToProps)(FriendList);

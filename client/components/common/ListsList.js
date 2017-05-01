@@ -1,10 +1,9 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { NavLink, Link } from 'react-router-dom';
-import { fetchLists } from '../../actions/TweetsActions';
+import React from "react";
+import { connect } from "react-redux";
+import { NavLink, Link } from "react-router-dom";
+import { fetchLists } from "../../actions/TweetsActions";
 
 class ListsList extends React.Component {
-
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchLists());
@@ -12,30 +11,45 @@ class ListsList extends React.Component {
 
   renderLink(list, index) {
     let link = null;
-    if(list.id_str){
+    if (list.id_str) {
       link = (
-        <NavLink key={index} to={ `/lists/${list.id_str}`} 
-          className="list-group-item" activeClassName="active">{list.name}</NavLink>);
-    }else{
+        <NavLink
+          key={index}
+          to={`/lists/${list.id_str}`}
+          className="list-group-item"
+          activeClassName="active"
+        >
+          {list.name}
+        </NavLink>
+      );
+    } else {
       link = (
-        <NavLink exact key={index} to="/"
-        className="list-group-item" activeClassName="active">{list.name}</NavLink>);
+        <NavLink
+          exact
+          key={index}
+          to="/"
+          className="list-group-item"
+          activeClassName="active"
+        >
+          {list.name}
+        </NavLink>
+      );
     }
-    return link
+    return link;
   }
 
   render() {
     let { lists } = this.props;
-    if(lists){
-      lists = [{name:"All"}, ...lists];
+    if (lists) {
+      lists = [{ name: "All" }, ...lists];
       return (
         <div className="list-group">
-          { lists.map((list, index) => this.renderLink(list, index))}
+          {lists.map((list, index) => this.renderLink(list, index))}
           <Link to="/manage" className="manage-link">Mange Lists</Link>
         </div>
       );
-    }else{
-      return (<p>Loading lists...</p>);
+    } else {
+      return <p>Loading lists...</p>;
     }
   }
 }

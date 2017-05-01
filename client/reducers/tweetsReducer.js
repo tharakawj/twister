@@ -1,13 +1,13 @@
-import * as types from '../constants/ActionTypes';
+import * as types from "../constants/ActionTypes";
 
 const initialState = {
   tweets: null,
-  lists:null,
-  friends:null
+  lists: null,
+  friends: null
 };
 
-export default function authReducer(state = initialState, action){
-  switch(action.type) {
+export default function authReducer(state = initialState, action) {
+  switch (action.type) {
     case types.RECEIVE_TWEETS:
       return Object.assign({}, state, {
         tweets: action.tweets
@@ -21,12 +21,17 @@ export default function authReducer(state = initialState, action){
     case types.RECEIVE_FRIENDS:
       return Object.assign({}, state, {
         friends: action.friends
-      })
+      });
     case types.RECEIVE_MEMBERS:
       return {
         ...state,
-        lists: state.lists.map(list => list.id_str === action.listId ? {...list, members: action.members } : list)
-      }
+        lists: state.lists.map(
+          list =>
+            (list.id_str === action.listId
+              ? { ...list, members: action.members }
+              : list)
+        )
+      };
     default:
       return state;
   }
