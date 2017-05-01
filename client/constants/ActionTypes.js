@@ -9,3 +9,5 @@ export const RECEIVE_TWEETS = "RECEIVE_TWEETS";
 export const RECEIVE_LISTS = "RECEIVE_LISTS";
 export const RECEIVE_FRIENDS = "RECEIVE_FRIENDS";
 export const RECEIVE_MEMBERS = "RECEIVE_MEMBERS";
+
+export const ADD_MEMBER = "ADD_MEMBER";

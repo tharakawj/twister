@@ -100,3 +100,30 @@ function recieveMembers(listId, members) {
     members
   };
 }
+
+export function addMemberToList(listId, memberId) {
+  return (dispatch, getState) => {
+    const { auth } = getState();
+
+    fetch(`/api/lists/members/create?list_id=${listId}&user_id=${memberId}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${auth.accessToken}`
+      }
+    })
+      .then(
+        response => response.ok && dispatch(addedMemberToList(listId, memberId))
+      )
+      .catch(err => {
+        throw err;
+      });
+  };
+}
+
+function addedMemberToList(listId, memberId) {
+  return {
+    type: types.ADD_MEMBER,
+    listId,
+    memberId
+  };
+}

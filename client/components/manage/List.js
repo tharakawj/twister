@@ -25,7 +25,7 @@ class List extends PureComponent {
 
 const squareTarget = {
   drop(props, monitor, component) {
-    console.log(monitor.getItem());
+    props.addMemberToList(props.list.id_str, monitor.getItem().id);
   }
 };
 

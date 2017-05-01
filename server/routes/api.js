@@ -15,7 +15,8 @@ const twitterEndPoints = [
   "lists/list",
   "lists/statuses",
   "friends/list",
-  "lists/members"
+  "lists/members",
+  "lists/members/create"
 ];
 
 function removeFirstSlash(text) {
@@ -23,7 +24,7 @@ function removeFirstSlash(text) {
   return text;
 }
 
-apiRouter.get("/*", function(req, res) {
+apiRouter.all("/*", function(req, res) {
   const path = removeFirstSlash(req.path);
 
   if (twitterEndPoints.indexOf(path) === -1) {
@@ -34,14 +35,14 @@ apiRouter.get("/*", function(req, res) {
         return res.sendStatus(403);
       }
 
-      var T = new Twit({
+      const T = new Twit({
         consumer_key: config.twitterConsumerKey,
         consumer_secret: config.twitterConsumerSecret,
         access_token: authObj.token,
         access_token_secret: authObj.tokenSecret
       });
 
-      T.get(path, req.query)
+      T.request(req.method, path, req.query)
         .catch(function(err) {
           console.log("caught error", err.stack);
         })

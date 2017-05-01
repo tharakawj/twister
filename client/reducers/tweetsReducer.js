@@ -32,6 +32,19 @@ export default function authReducer(state = initialState, action) {
               : list)
         )
       };
+    case types.ADD_MEMBER:
+      const member = state.friends.find(e => e.id_str === action.memberId);
+      return !member
+        ? state
+        : {
+            ...state,
+            lists: state.lists.map(
+              list =>
+                (list.id_str === action.listId
+                  ? { ...list, members: [...list.members, member] }
+                  : list)
+            )
+          };
     default:
       return state;
   }
