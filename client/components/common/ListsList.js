@@ -25,8 +25,9 @@ class ListsList extends React.Component {
   }
 
   render() {
-    const { lists } = this.props;
+    let { lists } = this.props;
     if(lists){
+      lists = [{name:"All"}, ...lists];
       return (
         <div className="list-group">
           { lists.map((list, index) => this.renderLink(list, index))}

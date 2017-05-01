@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { fetchFriends } from '../../actions/TweetsActions';
 
-import Friend from './Friend'
+import Friend from './Friend';
 
 class FriendList extends Component {
 
@@ -22,8 +22,10 @@ class FriendList extends Component {
       return (
         <div className="friends-list">
           <ul>
-            { friends.map((friend) =>
-             (<Friend friend={friend}/>)) }
+            { 
+              friends.map(friend =>
+                (<Friend key={friend.id_str} friend={friend}/>))
+            }
           </ul>
         </div>
       );

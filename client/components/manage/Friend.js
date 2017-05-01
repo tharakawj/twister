@@ -2,7 +2,7 @@ import React from 'react';
 
 const Friend = ({friend}) => {
   return (
-    <li key={friend.id_str}>
+    <li>
       { friend.name }
     </li>
   );

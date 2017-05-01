@@ -40,7 +40,10 @@ function fetchAuthedUser(accessToken) {
     .then(handleErrors)
     .then(response => response.json())
     .then(json => dispatch(receiveAuthedUserPre(accessToken, json)))
-    .catch(err => { dispatch(resetAuthed()) });
+    .catch(err => { 
+      console.log(err);
+      dispatch(resetAuthed())
+     });
 }
 
 function receiveAuthedUserPre(accessToken, user) {
