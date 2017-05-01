@@ -1,11 +1,32 @@
-import React from "react";
+import React, { PureComponent } from "react";
+import { DragSource } from "react-dnd";
 
-const Friend = ({ friend }) => {
-  return (
-    <li>
-      {friend.name}
-    </li>
-  );
+import { PROFILE } from "../../constants/DragDropTypes";
+
+class Friend extends PureComponent {
+  render() {
+    const { friend, connectDragSource } = this.props;
+    return connectDragSource(
+      <li>
+        {friend.name}
+      </li>
+    );
+  }
+}
+
+const itemSource = {
+  beginDrag(props) {
+    return {
+      id: props.friend.id_str,
+      name: props.friend.name
+    };
+  }
 };
 
-export default Friend;
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource()
+  };
+}
+
+export default DragSource(PROFILE, itemSource, collect)(Friend);

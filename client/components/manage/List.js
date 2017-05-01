@@ -1,6 +1,9 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
+import { DropTarget } from "react-dnd";
 
-class List extends Component {
+import { PROFILE } from "../../constants/DragDropTypes";
+
+class List extends PureComponent {
   componentDidMount() {
     const { list, fetchMembers } = this.props;
     if (!list.members) {
@@ -9,9 +12,10 @@ class List extends Component {
   }
 
   render() {
-    const { list } = this.props;
-    return (
-      <div className="car-list-item">
+    const { list, connectDropTarget, isOver } = this.props;
+    const bg = isOver ? "red" : "#EE6050";
+    return connectDropTarget(
+      <div className="car-list-item" style={{ background: bg }}>
         <h3>{list.name}</h3>
         <p>{list.members ? list.members.length : "Loading"}</p>
       </div>
@@ -19,4 +23,17 @@ class List extends Component {
   }
 }
 
-export default List;
+const squareTarget = {
+  drop(props, monitor, component) {
+    console.log(monitor.getItem());
+  }
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver()
+  };
+}
+
+export default DropTarget(PROFILE, squareTarget, collect)(List);
