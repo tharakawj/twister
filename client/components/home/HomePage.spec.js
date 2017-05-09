@@ -3,12 +3,13 @@ import { shallow } from "enzyme";
 import { HomePage } from "./HomePage";
 import TweetsList from "../common/TweetsList";
 import ListsList from "../common/ListsList";
+import LandingPage from "../common/LandingPage";
 
-describe("Home Page", function() {
+describe("HomePage", function() {
   it("renders TweetsList and ListsList when user is given.", function() {
     const props = {
       user: {},
-      params: { listId: "001" }
+      match: { params: { listId: "001" } }
     };
     const homePage = shallow(<HomePage {...props} />);
     expect(homePage.find(TweetsList).length).toBe(1);
@@ -16,12 +17,11 @@ describe("Home Page", function() {
     expect(homePage.find(TweetsList).props().listId).toBe("001");
   });
 
-  it("renders  when user isn't given.", function() {
+  it("renders LandingPage when user isn't given.", function() {
     const props = {
       params: {}
     };
     const homePage = shallow(<HomePage {...props} />);
-    expect(homePage.find("div.jumbotron").length).toBe(1);
-    expect(homePage.find("h1").text()).toBe("Twister");
+    expect(homePage.find(LandingPage).length).toBe(1);
   });
 });

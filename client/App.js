@@ -13,7 +13,7 @@ import NoMatch from "./components/common/NoMatch";
 
 import "./App.css";
 
-class App extends Component {
+export class App extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(initAuth());
