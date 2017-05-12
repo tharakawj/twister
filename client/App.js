@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -14,9 +15,13 @@ import NoMatch from "./components/common/NoMatch";
 import "./App.css";
 
 export class App extends Component {
+  static propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+    initAuth: PropTypes.func.isRequired
+  };
+
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(initAuth());
+    this.props.initAuth();
   }
 
   render() {
@@ -40,10 +45,10 @@ export class App extends Component {
   }
 }
 
-function mapStateToProps(state, ownParams) {
+function mapStateToProps(state) {
   return {
     isLoading: state.app.isLoading
   };
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, { initAuth })(App);

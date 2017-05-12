@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import {
@@ -10,35 +11,41 @@ import {
 import List from "./List";
 
 class ListCarousel extends Component {
+  static defaultProps = {
+    lists: null
+  };
+
+  static propTypes = {
+    fetchLists: PropTypes.func.isRequired,
+    fetchMembers: PropTypes.func.isRequired,
+    addMemberToList: PropTypes.func.isRequired,
+    lists: PropTypes.arrayOf(PropTypes.object)
+  };
+
   componentDidMount() {
-    if (!this.lists) this.props.fetchLists();
+    if (!this.props.lists) this.props.fetchLists();
   }
 
   render() {
-    const { lists, fetchMembers, addMemberToList } = this.props;
+    const { lists, fetchMembers: fm, addMemberToList: aml } = this.props;
     if (lists) {
       return (
         <div className="list-carousel">
           <ul>
-            {lists.map((list, index) => (
+            {lists.map(list => (
               <li key={list.id_str}>
-                <List
-                  list={list}
-                  fetchMembers={fetchMembers}
-                  addMemberToList={addMemberToList}
-                />
+                <List list={list} fetchMembers={fm} addMemberToList={aml} />
               </li>
             ))}
           </ul>
         </div>
       );
-    } else {
-      return <p>Loading lists...</p>;
     }
+    return <p>Loading lists...</p>;
   }
 }
 
-function mapStateToPops(state, ownParams) {
+function mapStateToPops(state) {
   return {
     lists: state.tweets.lists
   };

@@ -1,6 +1,6 @@
 import React from "react";
 
-const LandingPage = props => (
+const LandingPage = () => (
   <div className="jumbotron">
     <h1>Twister</h1>
     <p>Alternative twitter web client where the lists are first class.</p>

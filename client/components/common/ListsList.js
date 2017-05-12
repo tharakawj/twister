@@ -1,15 +1,25 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import { fetchLists } from "../../actions/TweetsActions";
 
 class ListsList extends React.Component {
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchLists());
-  }
+  static defaultProps = {
+    lists: null
+  };
 
-  renderLink(list, index) {
+  static propTypes = {
+    lists: PropTypes.arrayOf(
+      PropTypes.shape({
+        id_str: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
+      })
+    ),
+    fetchLists: PropTypes.func.isRequired
+  };
+
+  static renderLink(list, index) {
     let link = null;
     if (list.id_str) {
       link = (
@@ -38,19 +48,22 @@ class ListsList extends React.Component {
     return link;
   }
 
+  componentDidMount() {
+    if (!this.props.lists) this.props.fetchLists();
+  }
+
   render() {
     let { lists } = this.props;
     if (lists) {
       lists = [{ name: "All" }, ...lists];
       return (
         <div className="list-group">
-          {lists.map((list, index) => this.renderLink(list, index))}
+          {lists.map((list, index) => ListsList.renderLink(list, index))}
           <Link to="/manage" className="manage-link">Mange Lists</Link>
         </div>
       );
-    } else {
-      return <p>Loading lists...</p>;
     }
+    return <p>Loading lists...</p>;
   }
 }
 
@@ -60,4 +73,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(ListsList);
+export default connect(mapStateToProps, { fetchLists })(ListsList);

@@ -27,12 +27,12 @@ export default function authReducer(state = initialState, action) {
         ...state,
         lists: state.lists.map(
           list =>
-            (list.id_str === action.listId
+            list.id_str === action.listId
               ? { ...list, members: action.members }
-              : list)
+              : list
         )
       };
-    case types.ADD_MEMBER:
+    case types.ADD_MEMBER: {
       const member = state.friends.find(e => e.id_str === action.memberId);
       return !member
         ? state
@@ -40,11 +40,12 @@ export default function authReducer(state = initialState, action) {
             ...state,
             lists: state.lists.map(
               list =>
-                (list.id_str === action.listId
+                list.id_str === action.listId
                   ? { ...list, members: [...list.members, member] }
-                  : list)
+                  : list
             )
           };
+    }
     default:
       return state;
   }

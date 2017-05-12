@@ -5,8 +5,8 @@ import TweetsList from "../common/TweetsList";
 import ListsList from "../common/ListsList";
 import LandingPage from "../common/LandingPage";
 
-describe("HomePage", function() {
-  it("renders TweetsList and ListsList when user is given.", function() {
+describe("HomePage", () => {
+  it("renders TweetsList and ListsList when user is given.", () => {
     const props = {
       user: {},
       match: { params: { listId: "001" } }
@@ -17,7 +17,7 @@ describe("HomePage", function() {
     expect(homePage.find(TweetsList).props().listId).toBe("001");
   });
 
-  it("renders LandingPage when user isn't given.", function() {
+  it("renders LandingPage when user isn't given.", () => {
     const props = {
       params: {}
     };

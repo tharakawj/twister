@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { fetchTweets } from "../../actions/TweetsActions";
@@ -6,15 +7,28 @@ import { fetchTweets } from "../../actions/TweetsActions";
 import Tweet from "./Tweet";
 
 export class TweetsList extends React.Component {
+  static defaultProps = {
+    tweets: null,
+    listId: null
+  };
+
+  static propTypes = {
+    tweets: PropTypes.arrayOf(
+      PropTypes.shape({ id_str: PropTypes.string.isRequired })
+    ),
+    listId: PropTypes.string,
+    fetchTweets: PropTypes.func.isRequired
+  };
+
   componentDidMount() {
-    const { dispatch, listId } = this.props;
-    dispatch(fetchTweets(listId));
+    const { listId, fetchTweets: ft } = this.props;
+    ft(listId);
   }
 
   componentWillReceiveProps(nextProps) {
-    const { dispatch, listId } = this.props;
+    const { listId, fetchTweets: ft } = this.props;
     if (nextProps.listId !== listId) {
-      dispatch(fetchTweets(nextProps.listId));
+      ft(nextProps.listId);
     }
   }
 
@@ -30,9 +44,8 @@ export class TweetsList extends React.Component {
           ))}
         </ul>
       );
-    } else {
-      return <p>Loading tweets...</p>;
     }
+    return <p>Loading tweets...</p>;
   }
 }
 
@@ -42,4 +55,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(TweetsList);
+export default connect(mapStateToProps, { fetchTweets })(TweetsList);

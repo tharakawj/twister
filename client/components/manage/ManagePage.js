@@ -5,20 +5,16 @@ import { DragDropContextProvider } from "react-dnd";
 import FriendList from "./FriendList";
 import ListCarousel from "./ListCarousel";
 
-class ManagePage extends React.Component {
-  render() {
-    return (
+const ManagePage = () => (
+  <div>
+    <h1>Manage Lists</h1>
+    <DragDropContextProvider backend={HTML5Backend}>
       <div>
-        <h1>Manage Lists</h1>
-        <DragDropContextProvider backend={HTML5Backend}>
-          <div>
-            <FriendList />
-            <ListCarousel />
-          </div>
-        </DragDropContextProvider>
+        <FriendList />
+        <ListCarousel />
       </div>
-    );
-  }
-}
+    </DragDropContextProvider>
+  </div>
+);
 
 export default ManagePage;

@@ -1,5 +1,5 @@
 import React from "react";
-import { bindActionCreators } from "redux";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import queryString from "query-string";
@@ -8,9 +8,27 @@ import { ACCESS_TOKEN_KEY } from "../../constants/AppConstants";
 import { authUser } from "../../actions/AuthActions";
 
 class AuthHandler extends React.Component {
+  static defaultProps = {
+    user: null
+  };
+
+  static propTypes = {
+    user: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      screen_name: PropTypes.string.isRequired
+    }),
+    location: PropTypes.shape({ search: PropTypes.string.isRequired })
+      .isRequired,
+    match: PropTypes.shape({
+      params: PropTypes.shape({ result: PropTypes.string.isRequired })
+        .isRequired
+    }).isRequired,
+    authUser: PropTypes.func.isRequired
+  };
+
   componentDidMount() {
     const queryParams = queryString.parse(this.props.location.search);
-    let token = queryParams.id_token;
+    const token = queryParams.id_token;
     if (this.props.match.params.result === "success" && token) {
       localStorage.setItem(ACCESS_TOKEN_KEY, token);
       this.props.authUser(token);
@@ -28,8 +46,4 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ authUser }, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AuthHandler);
+export default connect(mapStateToProps, { authUser })(AuthHandler);

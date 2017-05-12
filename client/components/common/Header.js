@@ -1,11 +1,27 @@
-import React, { PropTypes } from "react";
-import { bindActionCreators } from "redux";
+import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { signoutUser } from "../../actions/AuthActions";
 import twitterLogo from "../../twitter.svg";
 
 class Header extends React.Component {
+  static defaultProps = {
+    user: null,
+    token: null
+  };
+
+  static propTypes = {
+    user: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      screen_name: PropTypes.string.isRequired,
+      profile_image_url_https: PropTypes.string.isRequired
+    }),
+    token: PropTypes.string,
+    isLoading: PropTypes.bool.isRequired,
+    signoutUser: PropTypes.func.isRequired
+  };
+
   constructor() {
     super();
     this.state = { isDropdownOpen: false };
@@ -22,10 +38,6 @@ class Header extends React.Component {
     window.removeEventListener("click", this.onClickElsewhare);
   }
 
-  signoutUser() {
-    this.props.signoutUser(this.props.token);
-  }
-
   onUserClick(event) {
     event.stopPropagation();
     event.preventDefault();
@@ -36,6 +48,10 @@ class Header extends React.Component {
     this.setState({ isDropdownOpen: false });
   }
 
+  signoutUser() {
+    this.props.signoutUser(this.props.token);
+  }
+
   render() {
     const { user, isLoading } = this.props;
 
@@ -44,27 +60,45 @@ class Header extends React.Component {
     if (user) {
       const {
         profile_image_url_https: profileImage,
-        screen_name: screenName
+        screen_name: screenName,
+        name
       } = user;
 
       userSection = (
         <div className="dropdown open user-circle">
-          <a href="#" onClick={this.onUserClick}>
-            <img src={profileImage} className="img-circle" width="32" />
-          </a>
+          <button onClick={this.onUserClick} className="chromeless">
+            <img
+              src={profileImage}
+              className="img-circle"
+              width="32"
+              alt={name}
+            />
+          </button>
           {this.state.isDropdownOpen &&
             <ul className="dropdown-menu">
-              <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
               <li>
-                <a href={`https://twitter.com/${screenName}`} target="_blank">
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`https://twitter.com/${screenName}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Profile
                 </a>
               </li>
               <li role="separator" className="divider" />
               <li>
-                <a href="javascript:void(0)" onClick={this.signoutUser}>
+                <button onClick={this.signoutUser} className="chromeless">
                   Sign out
-                </a>
+                </button>
               </li>
             </ul>}
         </div>
@@ -86,7 +120,7 @@ class Header extends React.Component {
         <div className="container">
           <div className="navbar-header">
             <Link to="/" className="logo navbar-brand">
-              <img src={twitterLogo} width="40" />
+              <img src={twitterLogo} width="40" alt="twitter logo" />
               <span className="brand-text">Twister</span>
             </Link>
           </div>
@@ -107,8 +141,4 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ signoutUser }, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, { signoutUser })(Header);

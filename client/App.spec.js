@@ -4,8 +4,8 @@ import { Switch } from "react-router-dom";
 import { App } from "./App";
 import Spinner from "./components/common/Spinner";
 
-describe("App", function() {
-  it("renders Spinner when data is loading.", function() {
+describe("App", () => {
+  it("renders Spinner when data is loading.", () => {
     const props = {
       isLoading: true
     };
@@ -13,7 +13,7 @@ describe("App", function() {
     expect(app.find(Spinner).length).toBe(1);
   });
 
-  it("renders Switch when data isn't loading.", function() {
+  it("renders Switch when data isn't loading.", () => {
     const props = {
       isLoading: false
     };

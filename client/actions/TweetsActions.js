@@ -1,10 +1,17 @@
 import * as types from "../constants/ActionTypes";
 
+function receiveTweets(tweets) {
+  return {
+    type: types.RECEIVE_TWEETS,
+    tweets
+  };
+}
+
 export function fetchTweets(listId) {
   return (dispatch, getState) => {
     const { auth } = getState();
 
-    var url = listId
+    const url = listId
       ? `/api/lists/statuses?list_id=${listId}&count=50`
       : "/api/statuses/home_timeline?count=50";
 
@@ -21,10 +28,10 @@ export function fetchTweets(listId) {
   };
 }
 
-function receiveTweets(tweets) {
+function receiveLists(lists) {
   return {
-    type: types.RECEIVE_TWEETS,
-    tweets
+    type: types.RECEIVE_LISTS,
+    lists
   };
 }
 
@@ -45,10 +52,10 @@ export function fetchLists() {
   };
 }
 
-function receiveLists(lists) {
+function recieveFriends(friends) {
   return {
-    type: types.RECEIVE_LISTS,
-    lists
+    type: types.RECEIVE_FRIENDS,
+    friends
   };
 }
 
@@ -69,10 +76,11 @@ export function fetchFriends() {
   };
 }
 
-function recieveFriends(friends) {
+function recieveMembers(listId, members) {
   return {
-    type: types.RECEIVE_FRIENDS,
-    friends
+    type: types.RECEIVE_MEMBERS,
+    listId,
+    members
   };
 }
 
@@ -93,11 +101,11 @@ export function fetchMembers(listId) {
   };
 }
 
-function recieveMembers(listId, members) {
+function addedMemberToList(listId, memberId) {
   return {
-    type: types.RECEIVE_MEMBERS,
+    type: types.ADD_MEMBER,
     listId,
-    members
+    memberId
   };
 }
 
@@ -117,13 +125,5 @@ export function addMemberToList(listId, memberId) {
       .catch(err => {
         throw err;
       });
-  };
-}
-
-function addedMemberToList(listId, memberId) {
-  return {
-    type: types.ADD_MEMBER,
-    listId,
-    memberId
   };
 }
