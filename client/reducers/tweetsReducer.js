@@ -41,7 +41,7 @@ export default function authReducer(state = initialState, action) {
             lists: state.lists.map(
               list =>
                 list.id_str === action.listId
-                  ? { ...list, members: [...list.members, member] }
+                  ? { ...list, members: [member, ...list.members] }
                   : list
             )
           };

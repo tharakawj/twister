@@ -7,10 +7,14 @@ import ListCarousel from "./ListCarousel";
 
 const ManagePage = () => (
   <div>
-    <h1>Manage Lists</h1>
     <DragDropContextProvider backend={HTML5Backend}>
       <div>
+        <h4>People</h4>
         <FriendList />
+        <div className="manage-page-tip">
+          Wanna add new members to a list? Just drag people to your lists.
+        </div>
+        <h4>Lists</h4>
         <ListCarousel />
       </div>
     </DragDropContextProvider>

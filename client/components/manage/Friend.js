@@ -15,10 +15,24 @@ class Friend extends PureComponent {
 
   render() {
     const { friend, connectDragSource } = this.props;
+    const profileImageBigger = friend.profile_image_url_https.replace(
+      /_normal./,
+      "_bigger."
+    );
     return connectDragSource(
-      <li>
-        {friend.name}
-      </li>
+      <div className="friend media">
+        <div className="media-left">
+          <img
+            className="media-object"
+            src={profileImageBigger}
+            alt={friend.name}
+          />
+        </div>
+        <div className="media-body">
+          <h5 className="media-heading">{friend.name}</h5>
+          <span className="friend-handler">@{friend.screen_name}</span>
+        </div>
+      </div>
     );
   }
 }

@@ -26,12 +26,16 @@ class FriendList extends Component {
     const { friends } = this.props;
     if (friends) {
       return (
-        <div className="friends-list">
-          <ul>
-            {friends.map(friend => (
-              <Friend key={friend.id_str} friend={friend} />
-            ))}
-          </ul>
+        <div className="panel panel-default">
+          <div className="friends-list panel-body">
+            <ul>
+              {friends.map(friend => (
+                <li key={friend.id_str}>
+                  <Friend friend={friend} />
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       );
     }

@@ -61,7 +61,7 @@ body {
 .tweet img{
   width: 48px;
   height: 48px;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 .dropdown-menu:after, .dropdown-menu:before {
@@ -100,37 +100,68 @@ body {
   }
 }
 
-.friends-list {
-  margin-bottom: 50px;
-}
-
 .friends-list ul {
-  border: 1px solid #555;
   width: 100%;
-  height: calc(100vh - 400px);
+  height: calc(100vh - 450px);
   overflow-y: auto;
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   padding: 0px;
+  margin-bottom: 0px;
 }
 
 .friends-list li {
-  width: 260px;
-  height: 90px;
-  background: #ddd;
   display: inline-block;
-  margin: 5px;
+  margin-right: 15px;
+  margin-bottom: 15px;
 }
 
-.list-carousel{
-  height: 200px;
+.friend{
+  width: 250px;
+  padding: 10px;
+  border: 1px solid rgba(150,150,150,0.3);
+  background: rgb(242,242,242);
+  border-radius: 2px;
+  transition-duration: 200ms;
+  -webkit-transition-duration: 200ms;
+  transition-property: transform, border, box-shadow, margin, opacity, width;
+  -webkit-transition-property: -webkit-transform, border, box-shadow, margin, opacity, width;
+}
+
+.friend:hover, .car-list-item:hover
+{
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1), 0 1px 4px 0 rgba(0,0,0,0.2);
+}
+
+.friend h5{
+  margin-top: 2px;
+}
+
+.friend img{
+  width: 48px;
+  height: 48px;
+  border-radius: 3px;
+}
+
+.friend-handler{
+  font-size: 12px;
+  color: #888;
+}
+
+.list-carousel ul{
+  margin-bottom: 0px;
 } 
+.list-carousel.panel-body{
+  padding: 0px 10px;
+  padding-bottom: 10px;
+}
 
 .list-carousel ul{
   list-style: none;
   display: flex;
   overflow-x: auto;
+  overflow-y:hidden;
   width: 100%;
   padding: 0px;
 }
@@ -140,10 +171,89 @@ body {
 }
 
 .car-list-item{
-  min-width: 200px;
-  height: 100px;
-  background: #EE6055;
-  margin-right: 5px;
+  min-width: 250px;
+  max-width: 280px;
+  height: 140px;
+  margin: 20px 10px;
+  padding: 10px;
+  border: 1px solid rgba(150,150,150,0.3);
+  background: #f2f2f2;
+  border-radius: 2px;
+  transition-duration: 300ms;
+  -webkit-transition-duration: 300ms;
+  transition-property: transform, border, box-shadow, margin, opacity, width;
+  -webkit-transition-property: -webkit-transform, border, box-shadow, margin, opacity, width;
+  position: relative;
+}
+
+.car-list-item h4{
+  margin: 4px 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-bottom: 2px;
+  display: inline-block;
+}
+
+.car-list-item p{
+  margin-top: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 12px;
+}
+
+.car-list-item .glyphicon{
+  margin-top: 6px;
+  font-size: 10px;
+  color: #888;
+}
+
+.car-list-item p span{
+  margin-top: 12px;
+  color: #999;
+}
+
+.car-list-item-line{
+  font-size: 12px;
+  color: #888;
+  margin-top: -3px;
+}
+
+.members img{
+  width: 24px;
+  height: 24px;
+  margin-right: 1px;
+  border-width: 0px;
+}
+
+.members div{
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0px 3px;
+  line-height: 24px;
+  font-size: 14px;
+  min-width: 24px;
+  height: 24px;
+  margin-right: 1px;
+  background: #bbb;
+}
+
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.7;
+}
+
+.overlay div{
+  color: #f94040;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 70px;
 }
 
 .chromeless, .chromeless:focus{
@@ -168,4 +278,9 @@ body {
     color: #262626;
     text-decoration: none;
     background-color: #f5f5f5;
+}
+
+.manage-page-tip {
+  text-align: center;
+  color: #666;
 }

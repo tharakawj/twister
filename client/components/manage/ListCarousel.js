@@ -30,14 +30,16 @@ class ListCarousel extends Component {
     const { lists, fetchMembers: fm, addMemberToList: aml } = this.props;
     if (lists) {
       return (
-        <div className="list-carousel">
-          <ul>
-            {lists.map(list => (
-              <li key={list.id_str}>
-                <List list={list} fetchMembers={fm} addMemberToList={aml} />
-              </li>
-            ))}
-          </ul>
+        <div className="panel panel-default">
+          <div className="list-carousel panel-body">
+            <ul>
+              {lists.map(list => (
+                <li key={list.id_str}>
+                  <List list={list} fetchMembers={fm} addMemberToList={aml} />
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       );
     }
@@ -46,8 +48,13 @@ class ListCarousel extends Component {
 }
 
 function mapStateToPops(state) {
+  const ownLists = state.tweets.lists
+    ? state.tweets.lists.filter(
+        list => list.user.id_str === state.auth.user.id_str
+      )
+    : null;
   return {
-    lists: state.tweets.lists
+    lists: ownLists
   };
 }
 
