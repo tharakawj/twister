@@ -284,3 +284,207 @@ body {
   text-align: center;
   color: #666;
 }
+
+/* Tweet placeholder start */
+
+.tweet.placeholder{
+  height: 96px;
+  margin-bottom: -1px;
+}
+
+.tweet.placeholder:hover{
+  color:initial;
+  text-decoration: initial;
+  background-color: initial;
+}
+
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -550px 0
+    }
+    100%{
+        background-position: 550px 0
+    }
+}
+
+.tweet .animated-background {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 1100px 104px;
+    height: 75px;
+    position: relative;
+}
+
+.background-masker {
+    background: #fff;
+    position: absolute;
+}
+
+.tweet .background-masker.header-top {
+    top: 0;
+    left: 48px;
+    right: 0;
+    height: 7px;
+}
+
+.tweet .background-masker.header-left {
+    top: 7px;
+    left: 48px;
+    right: 0;
+    height: 12px;
+    width: 10px;
+}
+
+.tweet .background-masker.header-right {
+    top: 7px;
+    left: 200px;
+    right: 0;
+    height: 12px;
+}
+
+.tweet .background-masker.header-bottom {
+    top: 19px;
+    left: 48px;
+    right: 0;
+    height: 15px;
+}
+
+.tweet .background-masker.content-first-left {
+    top: 34px;
+    left: 48px;
+    right: 0;
+    height: 8px;
+    width: 10px;
+}
+
+.tweet .background-masker.content-first-right {
+    top: 34px;
+    left: 500px;
+    right: 0;
+    height: 8px;
+}
+
+.tweet .background-masker.content-first-bottom {
+    top: 42px;
+    left: 48px;
+    right: 0;
+    height: 6px;
+}
+
+.tweet .background-masker.content-second-top {
+    top: 48px;
+    left: 0;
+    right: 0;
+    height: 4px;
+}
+
+.tweet .background-masker.content-second-left {
+    top: 52px;
+    left: 0px;
+    right: 0;
+    height: 8px;
+    width: 58px;
+}
+
+.tweet .background-masker.content-second-right {
+    top: 52px;
+    left: 400px;
+    right: 0;
+    height: 8px;
+}
+
+.tweet .background-masker.content-second-bottom {
+    top: 60px;
+    left: 0;
+    right: 0;
+    height: 15px;
+}
+
+
+/* Tweet placeholder end */
+
+/* List placeholder start */
+
+.listslist.placeholder{
+  height: 120px;
+  padding: 10px 15px;
+  padding-right: 30px;
+}
+
+@keyframes placeHolderShimmer2{
+    0%{
+        background-position: -200px 0
+    }
+    100%{
+        background-position: 200px 0
+    }
+}
+
+.listslist .animated-background {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer2;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 400px 104px;
+    height: 120px;
+    position: relative;
+}
+
+.listslist .background-masker.line-first-top{
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+}
+
+.listslist .background-masker.line-first-right{
+  top: 5px;
+  left: 50px;
+  right: 0;
+  height: 10px;
+}
+
+.listslist .background-masker.line-second-top{
+  top: 15px;
+  left: 0;
+  right: 0;
+  height: 25px;
+}
+
+.listslist .background-masker.line-second-right{
+  top: 40px;
+  left: 120px;
+  right: 0;
+  height: 10px;
+}
+
+.listslist .background-masker.line-third-top{
+  top: 50px;
+  left: 0;
+  right: 0;
+  height: 25px;
+}
+
+.listslist .background-masker.line-fourth-top{
+  top: 85px;
+  left: 0;
+  right: 0;
+  height: 25px;
+}
+
+.listslist .background-masker.line-fourth-right{
+  top: 110px;
+  left: 90px;
+  right: 0;
+  height: 10px;
+}
+
+/* List placeholder end */

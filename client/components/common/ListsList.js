@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import { fetchLists } from "../../actions/TweetsActions";
 
+import ListsListPlaceholder from "./ListsListPlaceholder";
+
 class ListsList extends React.Component {
   static defaultProps = {
     lists: null
@@ -63,7 +65,7 @@ class ListsList extends React.Component {
         </div>
       );
     }
-    return <p>Loading lists...</p>;
+    return <ListsListPlaceholder />;
   }
 }
 

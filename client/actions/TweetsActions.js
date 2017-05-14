@@ -7,8 +7,15 @@ function receiveTweets(tweets) {
   };
 }
 
+function fetchingTweets() {
+  return {
+    type: types.FETCHING_TWEETS
+  };
+}
+
 export function fetchTweets(listId) {
   return (dispatch, getState) => {
+    dispatch(fetchingTweets());
     const { auth } = getState();
 
     const url = listId

@@ -2,15 +2,23 @@ import * as types from "../constants/ActionTypes";
 
 const initialState = {
   tweets: null,
+  loadingTweets: true,
   lists: null,
   friends: null
 };
 
 export default function authReducer(state = initialState, action) {
   switch (action.type) {
+    case types.FETCHING_TWEETS:
+      return Object.assign({}, state, {
+        tweets: [],
+        loadingTweets: true
+      });
+
     case types.RECEIVE_TWEETS:
       return Object.assign({}, state, {
-        tweets: action.tweets
+        tweets: action.tweets,
+        loadingTweets: false
       });
 
     case types.RECEIVE_LISTS:

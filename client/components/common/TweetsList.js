@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { fetchTweets } from "../../actions/TweetsActions";
 
 import Tweet from "./Tweet";
+import TweetsListPlaceholder from "./TweetsListPlaceholder";
 
 export class TweetsList extends React.Component {
   static defaultProps = {
@@ -16,6 +17,7 @@ export class TweetsList extends React.Component {
     tweets: PropTypes.arrayOf(
       PropTypes.shape({ id_str: PropTypes.string.isRequired })
     ),
+    loading: PropTypes.bool.isRequired,
     listId: PropTypes.string,
     fetchTweets: PropTypes.func.isRequired
   };
@@ -33,8 +35,8 @@ export class TweetsList extends React.Component {
   }
 
   render() {
-    const { tweets } = this.props;
-    if (tweets) {
+    const { tweets, loading } = this.props;
+    if (!loading) {
       return (
         <ul className="tweets-list">
           {tweets.map(tweet => (
@@ -45,13 +47,14 @@ export class TweetsList extends React.Component {
         </ul>
       );
     }
-    return <p>Loading tweets...</p>;
+    return <TweetsListPlaceholder />;
   }
 }
 
 function mapStateToProps(state) {
   return {
-    tweets: state.tweets.tweets
+    tweets: state.tweets.tweets,
+    loading: state.tweets.loadingTweets
   };
 }
 
