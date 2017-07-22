@@ -1,8 +1,11 @@
 var config = {
   port: process.env.PORT || 8000,
-  twitterConsumerKey: process.env.TWISTER_APP_TWITTER_CONSUMER_KEY || 'aawDAUGbq3HXNqIVTjNHKA4mp',
-  twitterConsumerSecret: process.env.TWISTER_APP_TWITTER_CONSUMER_SECRET || '75vIWbZoRbCwVTkLNqGnIC1SvmqRYC5sLECeGrol8VXNVVYWmF',
-  jwtSecret: process.env.TWISTER_APP_JWT_SECRET || 'supersecret'
+  twitterConsumerKey:
+    process.env.TWISTER_APP_TWITTER_CONSUMER_KEY || "<twitter_consumer_key>",
+  twitterConsumerSecret:
+    process.env.TWISTER_APP_TWITTER_CONSUMER_SECRET ||
+    "<twitter_consumer_secret>",
+  jwtSecret: process.env.TWISTER_APP_JWT_SECRET || "secret"
 };
 
 module.exports = config;
