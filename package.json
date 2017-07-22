@@ -1,7 +1,7 @@
 {
   "name": "twister",
   "version": "1.0.0",
-  "description": "A better way to organize and use twitter lists",
+  "description": "An alternative web interface for organize and utilize twitter lists",
   "scripts": {
     "start": "cross-env NODE_ENV=development nodemon server/index.js --exec babel-node --presets es2015,stage-2",
     "build": "cross-env NODE_ENV=production babel-node scripts/build.js --presets es2015,stage-2",
@@ -9,13 +9,7 @@
     "build:serve": "cross-env NODE_ENV=production node build/index.js",
     "test": "jest"
   },
-  "keywords": [
-    "twitter",
-    "lists",
-    "react",
-    "redux",
-    "express"
-  ],
+  "keywords": ["twitter", "lists", "react", "redux", "express"],
   "author": "Tharaka Wijebandara",
   "license": "MIT",
   "dependencies": {
@@ -83,23 +77,15 @@
     "webpack-hot-middleware": "^2.18.0"
   },
   "jest": {
-    "collectCoverageFrom": [
-      "client/**/*.{js,jsx}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
-    "testPathIgnorePatterns": [
-      "<rootDir>[/\\\\](build|node_modules)[/\\\\]"
-    ],
+    "collectCoverageFrom": ["client/**/*.{js,jsx}"],
+    "setupFiles": ["<rootDir>/config/polyfills.js"],
+    "testPathIgnorePatterns": ["<rootDir>[/\\\\](build|node_modules)[/\\\\]"],
     "testURL": "http://localhost",
     "transform": {
       "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
-    ]
+    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"]
   }
 }
