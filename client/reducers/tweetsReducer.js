@@ -1,8 +1,9 @@
 import * as types from "../constants/ActionTypes";
 
 const initialState = {
-  tweets: null,
+  tweets: [],
   loadingTweets: true,
+  maxId: null,
   lists: null,
   friends: null
 };
@@ -15,9 +16,28 @@ export default function authReducer(state = initialState, action) {
         loadingTweets: true
       });
 
+    case types.FETCHING_MORE_TWEETS:
+      return Object.assign({}, state, {
+        loadingTweets: true
+      });
+
     case types.RECEIVE_TWEETS:
       return Object.assign({}, state, {
         tweets: action.tweets,
+        maxId:
+          action.tweets.length > 0
+            ? action.tweets[action.tweets.length - 1].id_str
+            : null,
+        loadingTweets: false
+      });
+
+    case types.RECEIVE_MORE_TWEETS:
+      return Object.assign({}, state, {
+        tweets: [...state.tweets, ...action.tweets],
+        maxId:
+          action.tweets.length > 0
+            ? action.tweets[action.tweets.length - 1].id_str
+            : null,
         loadingTweets: false
       });
 

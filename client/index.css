@@ -2,11 +2,15 @@ body {
   padding-top: 70px;
 }
 
-.spinner-container {
-    padding: 20px 0;
-    position: fixed;
-    left: 50%;
-    top: 50%;
+.center-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
+.spinner-container img{
+    display: block;
+    margin: 0 auto;
 }
 
 .logo{
@@ -40,6 +44,11 @@ body {
 .tweets-list{
   padding: 0px;
   list-style: none;
+}
+
+.tweets-list-footer {
+  margin: 15px 0px;
+  text-align: center;
 }
 
 .tweets-list-item{
@@ -91,7 +100,6 @@ body {
 
 .manage-link{
   float: right;
-  margin-top: 15px;
 }
 
 @media (min-width: 768px) {

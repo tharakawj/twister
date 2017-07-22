@@ -59,9 +59,13 @@ class ListsList extends React.Component {
     if (lists) {
       lists = [{ name: "All" }, ...lists];
       return (
-        <div className="list-group">
-          {lists.map((list, index) => ListsList.renderLink(list, index))}
-          <Link to="/manage" className="manage-link">Mange Lists</Link>
+        <div>
+          <div className="list-group">
+            {lists.map((list, index) => ListsList.renderLink(list, index))}
+          </div>
+          <Link to="/manage" className="manage-link">
+            Mange Lists
+          </Link>
         </div>
       );
     }

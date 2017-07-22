@@ -1,4 +1,5 @@
 import * as types from "../constants/ActionTypes";
+import decrementStringNumber from "../utils/decrementStringNumber";
 
 function receiveTweets(tweets) {
   return {
@@ -29,6 +30,49 @@ export function fetchTweets(listId) {
     })
       .then(response => response.json())
       .then(response => dispatch(receiveTweets(response)))
+      .catch(err => {
+        throw err;
+      });
+  };
+}
+
+function receiveMoreTweets(tweets) {
+  return {
+    type: types.RECEIVE_MORE_TWEETS,
+    tweets
+  };
+}
+
+function fetchingMoreTweets() {
+  return {
+    type: types.FETCHING_MORE_TWEETS
+  };
+}
+
+export function fetchMoreTweets(listId) {
+  return (dispatch, getState) => {
+    const { auth, tweets } = getState();
+
+    if (!tweets.maxId) {
+      dispatch(fetchTweets(listId));
+      return;
+    }
+
+    const optMaxId = decrementStringNumber(tweets.maxId);
+
+    dispatch(fetchingMoreTweets());
+
+    const url = listId
+      ? `/api/lists/statuses?list_id=${listId}&count=50&max_id=${optMaxId}`
+      : `/api/statuses/home_timeline?count=50&max_id=${optMaxId}`;
+
+    fetch(url, {
+      headers: {
+        Authorization: `Bearer ${auth.accessToken}`
+      }
+    })
+      .then(response => response.json())
+      .then(response => dispatch(receiveMoreTweets(response)))
       .catch(err => {
         throw err;
       });

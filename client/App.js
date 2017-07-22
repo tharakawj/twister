@@ -31,7 +31,9 @@ export class App extends Component {
         <div className="container">
           <Header />
           {isLoading
-            ? <Spinner />
+            ? <div className="center-box">
+                <Spinner />
+              </div>
             : <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route path="/lists/:listId" component={HomePage} />

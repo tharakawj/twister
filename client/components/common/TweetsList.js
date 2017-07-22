@@ -2,9 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { fetchTweets } from "../../actions/TweetsActions";
+import { fetchTweets, fetchMoreTweets } from "../../actions/TweetsActions";
 
 import Tweet from "./Tweet";
+import TweetsListFooter from "./TweetsListFooter";
 import TweetsListPlaceholder from "./TweetsListPlaceholder";
 
 export class TweetsList extends React.Component {
@@ -19,7 +20,8 @@ export class TweetsList extends React.Component {
     ),
     loading: PropTypes.bool.isRequired,
     listId: PropTypes.string,
-    fetchTweets: PropTypes.func.isRequired
+    fetchTweets: PropTypes.func.isRequired,
+    fetchMoreTweets: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -35,19 +37,22 @@ export class TweetsList extends React.Component {
   }
 
   render() {
-    const { tweets, loading } = this.props;
-    if (!loading) {
-      return (
+    const { tweets, loading, listId, fetchMoreTweets: fmt } = this.props;
+    return (
+      <div>
         <ul className="tweets-list">
-          {tweets.map(tweet => (
+          {tweets.map(tweet =>
             <li key={tweet.id_str} className="tweets-list-item">
               <Tweet tweet={tweet} />
             </li>
-          ))}
+          )}
         </ul>
-      );
-    }
-    return <TweetsListPlaceholder />;
+        {tweets.length === 0 &&
+          (loading ? <TweetsListPlaceholder /> : "No tweets found!")}
+        {tweets.length !== 0 &&
+          <TweetsListFooter loading={loading} loadMore={() => fmt(listId)} />}
+      </div>
+    );
   }
 }
 
@@ -58,4 +63,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchTweets })(TweetsList);
+export default connect(mapStateToProps, { fetchTweets, fetchMoreTweets })(
+  TweetsList
+);
