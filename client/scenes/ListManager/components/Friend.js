@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { DragSource } from "react-dnd";
 
-import { PROFILE } from "../../constants/DragDropTypes";
+import { PROFILE } from "../../../constants/DragDropTypes";
 
 class Friend extends PureComponent {
   static propTypes = {
@@ -29,8 +29,12 @@ class Friend extends PureComponent {
           />
         </div>
         <div className="media-body">
-          <h5 className="media-heading">{friend.name}</h5>
-          <span className="friend-handler">@{friend.screen_name}</span>
+          <h5 className="media-heading">
+            {friend.name}
+          </h5>
+          <span className="friend-handler">
+            @{friend.screen_name}
+          </span>
         </div>
       </div>
     );

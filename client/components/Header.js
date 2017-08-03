@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { signoutUser } from "../../actions/AuthActions";
-import twitterLogo from "../../twitter.svg";
+import { signoutUser } from "../actions/AuthActions";
+import twitterLogo from "../twitter.svg";
 
 class Header extends React.Component {
   static defaultProps = {

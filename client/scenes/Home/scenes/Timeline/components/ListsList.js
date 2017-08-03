@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
-import { fetchLists } from "../../actions/TweetsActions";
+import { fetchLists } from "../../../../../actions/TweetsActions";
 
 import ListsListPlaceholder from "./ListsListPlaceholder";
 

@@ -2,10 +2,10 @@ import React from "react";
 import HTML5Backend from "react-dnd-html5-backend";
 import { DragDropContextProvider } from "react-dnd";
 
-import FriendList from "./FriendList";
-import ListCarousel from "./ListCarousel";
+import FriendList from "./components/FriendList";
+import ListCarousel from "./components/ListCarousel";
 
-const ManagePage = () => (
+const ListManager = () =>
   <div>
     <DragDropContextProvider backend={HTML5Backend}>
       <div>
@@ -18,7 +18,6 @@ const ManagePage = () => (
         <ListCarousel />
       </div>
     </DragDropContextProvider>
-  </div>
-);
+  </div>;
 
-export default ManagePage;
+export default ListManager;

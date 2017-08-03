@@ -5,12 +5,12 @@ import { connect } from "react-redux";
 
 import { initAuth } from "./actions/AuthActions";
 
-import Header from "./components/common/Header";
-import Spinner from "./components/common/Spinner";
-import HomePage from "./components/home/HomePage";
-import ManagePage from "./components/manage/ManagePage";
-import AuthHandler from "./components/common/AuthHandler";
-import NoMatch from "./components/common/NoMatch";
+import AuthHandler from "./components/AuthHandler";
+import Header from "./components/Header";
+import Spinner from "./components/Spinner";
+import Home from "./scenes/Home";
+import ListManager from "./scenes/ListManager";
+import NotFound from "./scenes/NotFound";
 
 import "./App.css";
 
@@ -35,11 +35,11 @@ export class App extends Component {
                 <Spinner />
               </div>
             : <Switch>
-                <Route exact path="/" component={HomePage} />
-                <Route path="/lists/:listId" component={HomePage} />
-                <Route path="/manage" component={ManagePage} />
+                <Route exact path="/" component={Home} />
+                <Route path="/lists/:listId" component={Home} />
+                <Route path="/manage" component={ListManager} />
                 <Route path="/auth/:result" component={AuthHandler} />
-                <Route component={NoMatch} />
+                <Route component={NotFound} />
               </Switch>}
         </div>
       </Router>

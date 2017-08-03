@@ -2,7 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { fetchTweets, fetchMoreTweets } from "../../actions/TweetsActions";
+import {
+  fetchTweets,
+  fetchMoreTweets
+} from "../../../../../actions/TweetsActions";
 
 import Tweet from "./Tweet";
 import TweetsListFooter from "./TweetsListFooter";

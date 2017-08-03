@@ -6,7 +6,7 @@ import {
   fetchLists,
   fetchMembers,
   addMemberToList
-} from "../../actions/TweetsActions";
+} from "../../../actions/TweetsActions";
 
 import List from "./List";
 
@@ -33,11 +33,11 @@ class ListCarousel extends Component {
         <div className="panel panel-default">
           <div className="list-carousel panel-body">
             <ul>
-              {lists.map(list => (
+              {lists.map(list =>
                 <li key={list.id_str}>
                   <List list={list} fetchMembers={fm} addMemberToList={aml} />
                 </li>
-              ))}
+              )}
             </ul>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import bars from "../../bars.svg";
+import bars from "../bars.svg";
 
 const Spinner = () =>
   <div className="spinner-container">

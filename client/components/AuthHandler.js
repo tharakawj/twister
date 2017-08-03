@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import queryString from "query-string";
 import Spinner from "./Spinner";
-import { ACCESS_TOKEN_KEY } from "../../constants/AppConstants";
-import { authUser } from "../../actions/AuthActions";
+import { ACCESS_TOKEN_KEY } from "../constants/AppConstants";
+import { authUser } from "../actions/AuthActions";
 
 class AuthHandler extends React.Component {
   static defaultProps = {

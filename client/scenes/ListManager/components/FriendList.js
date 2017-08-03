@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { fetchFriends } from "../../actions/TweetsActions";
+import { fetchFriends } from "../../../actions/TweetsActions";
 
 import Friend from "./Friend";
 
@@ -29,11 +29,11 @@ class FriendList extends Component {
         <div className="panel panel-default">
           <div className="friends-list panel-body">
             <ul>
-              {friends.map(friend => (
+              {friends.map(friend =>
                 <li key={friend.id_str}>
                   <Friend friend={friend} />
                 </li>
-              ))}
+              )}
             </ul>
           </div>
         </div>
