@@ -9,7 +9,13 @@
     "build:serve": "cross-env NODE_ENV=production node build/index.js",
     "test": "jest"
   },
-  "keywords": ["twitter", "lists", "react", "redux", "express"],
+  "keywords": [
+    "twitter",
+    "lists",
+    "react",
+    "redux",
+    "express"
+  ],
   "author": "Tharaka Wijebandara",
   "license": "MIT",
   "dependencies": {
@@ -55,6 +61,7 @@
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-config-prettier": "^2.0.0",
+    "eslint-import-resolver-webpack": "^0.8.3",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
@@ -77,15 +84,23 @@
     "webpack-hot-middleware": "^2.18.0"
   },
   "jest": {
-    "collectCoverageFrom": ["client/**/*.{js,jsx}"],
-    "setupFiles": ["<rootDir>/config/polyfills.js"],
-    "testPathIgnorePatterns": ["<rootDir>[/\\\\](build|node_modules)[/\\\\]"],
+    "collectCoverageFrom": [
+      "client/**/*.{js,jsx}"
+    ],
+    "setupFiles": [
+      "<rootDir>/config/polyfills.js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>[/\\\\](build|node_modules)[/\\\\]"
+    ],
     "testURL": "http://localhost",
     "transform": {
       "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"]
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ]
   }
 }

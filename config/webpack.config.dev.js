@@ -68,6 +68,11 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    alias: {
+      Components: paths.componentsPath
+    }
+  },
   plugins: [
     // Makes the public URL available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">

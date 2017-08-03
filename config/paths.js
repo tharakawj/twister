@@ -1,5 +1,5 @@
-var path = require('path');
-var fs = require('fs');
+var path = require("path");
+var fs = require("fs");
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebookincubator/create-react-app/issues/637
@@ -23,26 +23,28 @@ function resolveApp(relativePath) {
 // Otherwise, we risk importing Node.js core modules into an app instead of Webpack shims.
 // https://github.com/facebookincubator/create-react-app/issues/1023#issuecomment-265344421
 
-var nodePaths = (process.env.NODE_PATH || '')
-  .split(process.platform === 'win32' ? ';' : ':')
+var nodePaths = (process.env.NODE_PATH || "")
+  .split(process.platform === "win32" ? ";" : ":")
   .filter(Boolean)
   .filter(folder => !path.isAbsolute(folder))
   .map(resolveApp);
 
 // config after eject: we're in ./config/
 module.exports = {
-  build: resolveApp('build'),
-  appBuild: resolveApp('build/public'),
-  appPublic: resolveApp('public'),
-  appHtml: resolveApp('public/index.html'),
-  appIndexJs: resolveApp('client/index.js'),
-  appPackageJson: resolveApp('package.json'),
-  appSrc: resolveApp('client'),
+  build: resolveApp("build"),
+  appBuild: resolveApp("build/public"),
+  appPublic: resolveApp("public"),
+  appHtml: resolveApp("public/index.html"),
+  appIndexJs: resolveApp("client/index.js"),
+  appPackageJson: resolveApp("package.json"),
+  appSrc: resolveApp("client"),
   //yarnLockFile: resolveApp('yarn.lock'),
   //testsSetup: resolveApp('client/setupTests.js'),
-  appNodeModules: resolveApp('node_modules'),
-  ownNodeModules: resolveApp('node_modules'),
+  appNodeModules: resolveApp("node_modules"),
+  ownNodeModules: resolveApp("node_modules"),
   nodePaths: nodePaths,
-  serverScr: resolveApp('server'),
-  serverIndexJs: resolveApp('server/index.js')
+  serverScr: resolveApp("server"),
+  serverIndexJs: resolveApp("server/index.js"),
+
+  componentsPath: resolveApp("client/components")
 };

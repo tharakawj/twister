@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { initAuth } from "./actions/AuthActions";
+import AuthHandler from "Components/AuthHandler";
+import Header from "Components/Header";
+import Spinner from "Components/Spinner";
 
-import AuthHandler from "./components/AuthHandler";
-import Header from "./components/Header";
-import Spinner from "./components/Spinner";
+import { initAuth } from "./actions/AuthActions";
 import Home from "./scenes/Home";
 import ListManager from "./scenes/ListManager";
 import NotFound from "./scenes/NotFound";
