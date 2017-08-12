@@ -63,9 +63,23 @@ class ListsList extends React.Component {
           <div className="list-group">
             {lists.map((list, index) => ListsList.renderLink(list, index))}
           </div>
-          <Link to="/manage" className="manage-link">
-            Mange Lists
-          </Link>
+          {lists.length > 1
+            ? <Link to="/manage" className="manage-link">
+                Mange Lists
+              </Link>
+            : <div className="alert alert-info" role="alert">
+                <div>
+                  <p>You dont have any list to show here</p>
+                  <a
+                    href="https://twitter.com/lists"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="btn btn-default"
+                  >
+                    Create a list
+                  </a>
+                </div>
+              </div>}
         </div>
       );
     }

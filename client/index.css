@@ -8,40 +8,40 @@ body {
   left: 50%;
 }
 
-.spinner-container img{
-    display: block;
-    margin: 0 auto;
+.spinner-container img {
+  display: block;
+  margin: 0 auto;
 }
 
-.logo{
+.logo {
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
-.navbar-brand>img {
+.navbar-brand > img {
   display: inline-block;
 }
 
-.brand-text{
+.brand-text {
   font-size: 26px;
   vertical-align: middle;
 }
 
-.user-circle{
+.user-circle {
   margin-top: 9px;
 }
 
-.user-circle > button{
+.user-circle > button {
   padding: 0px;
   border: none;
 }
 
-.user-circle .dropdown-menu{
+.user-circle .dropdown-menu {
   left: -65px;
   top: 40px;
 }
 
-.tweets-list{
+.tweets-list {
   padding: 0px;
   list-style: none;
 }
@@ -51,29 +51,30 @@ body {
   text-align: center;
 }
 
-.tweets-list-item{
+.tweets-list-item {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   margin-bottom: -1px;
 }
 
-.tweet{
+.tweet {
   padding: 10px;
 }
 
-.tweet:hover{
+.tweet:hover {
   color: #555;
   text-decoration: none;
   background-color: #f5f5f5;
 }
 
-.tweet img{
+.tweet img {
   width: 48px;
   height: 48px;
   border-radius: 3px;
 }
 
-.dropdown-menu:after, .dropdown-menu:before {
+.dropdown-menu:after,
+.dropdown-menu:before {
   bottom: 100%;
   left: 50%;
   border: solid transparent;
@@ -92,13 +93,13 @@ body {
 }
 .dropdown-menu:before {
   border-color: rgba(255, 0, 0, 0);
-  border-bottom-color: rgba(0,0,0,.15);
-  box-shadow: 0 6px 12px -12px rgba(0,0,0,.175);
+  border-bottom-color: rgba(0, 0, 0, .15);
+  box-shadow: 0 6px 12px -12px rgba(0, 0, 0, .175);
   border-width: 11px;
   margin-left: -11px;
 }
 
-.manage-link{
+.manage-link {
   float: right;
 }
 
@@ -125,76 +126,77 @@ body {
   margin-bottom: 15px;
 }
 
-.friend{
+.friend {
   width: 250px;
   padding: 10px;
-  border: 1px solid rgba(150,150,150,0.3);
-  background: rgb(242,242,242);
+  border: 1px solid rgba(150, 150, 150, 0.3);
+  background: rgb(242, 242, 242);
   border-radius: 2px;
   transition-duration: 200ms;
   -webkit-transition-duration: 200ms;
   transition-property: transform, border, box-shadow, margin, opacity, width;
-  -webkit-transition-property: -webkit-transform, border, box-shadow, margin, opacity, width;
+  -webkit-transition-property: -webkit-transform, border, box-shadow, margin,
+    opacity, width;
 }
 
-.friend:hover, .car-list-item:hover
-{
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1), 0 1px 4px 0 rgba(0,0,0,0.2);
+.friend:hover,
+.car-list-item:hover {
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 1px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
-.friend h5{
+.friend h5 {
   margin-top: 2px;
 }
 
-.friend img{
+.friend img {
   width: 48px;
   height: 48px;
   border-radius: 3px;
 }
 
-.friend-handler{
+.friend-handler {
   font-size: 12px;
   color: #888;
 }
 
-.list-carousel ul{
+.list-carousel ul {
   margin-bottom: 0px;
-} 
-.list-carousel.panel-body{
-  padding: 0px 10px;
-  padding-bottom: 10px;
+}
+.list-carousel.panel-body {
+  padding: 10px;
 }
 
-.list-carousel ul{
+.list-carousel ul {
   list-style: none;
   display: flex;
   overflow-x: auto;
-  overflow-y:hidden;
+  overflow-y: hidden;
   width: 100%;
   padding: 0px;
 }
 
-.list-carousel li{
+.list-carousel li {
   display: inline-block;
 }
 
-.car-list-item{
+.car-list-item {
   min-width: 250px;
   max-width: 280px;
   height: 140px;
-  margin: 20px 10px;
+  margin: 10px 10px;
   padding: 10px;
-  border: 1px solid rgba(150,150,150,0.3);
+  border: 1px solid rgba(150, 150, 150, 0.3);
   background: #f2f2f2;
   border-radius: 2px;
   transition-duration: 300ms;
   -webkit-transition-duration: 300ms;
   transition-property: transform, border, box-shadow, margin, opacity, width;
-  -webkit-transition-property: -webkit-transform, border, box-shadow, margin, opacity, width;
+  -webkit-transition-property: -webkit-transform, border, box-shadow, margin,
+    opacity, width;
   position: relative;
 }
 
-.car-list-item h4{
+.car-list-item h4 {
   margin: 4px 0px;
   white-space: nowrap;
   overflow: hidden;
@@ -203,7 +205,7 @@ body {
   display: inline-block;
 }
 
-.car-list-item p{
+.car-list-item p {
   margin-top: 10px;
   white-space: nowrap;
   overflow: hidden;
@@ -211,31 +213,31 @@ body {
   margin-bottom: 12px;
 }
 
-.car-list-item .glyphicon{
+.car-list-item .glyphicon {
   margin-top: 6px;
   font-size: 10px;
   color: #888;
 }
 
-.car-list-item p span{
+.car-list-item p span {
   margin-top: 12px;
   color: #999;
 }
 
-.car-list-item-line{
+.car-list-item-line {
   font-size: 12px;
   color: #888;
   margin-top: -3px;
 }
 
-.members img{
+.members img {
   width: 24px;
   height: 24px;
   margin-right: 1px;
   border-width: 0px;
 }
 
-.members div{
+.members div {
   display: inline-block;
   vertical-align: middle;
   text-align: center;
@@ -248,7 +250,7 @@ body {
   background: #bbb;
 }
 
-.overlay{
+.overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -257,20 +259,21 @@ body {
   opacity: 0.7;
 }
 
-.overlay div{
+.overlay div {
   color: #f94040;
   font-size: 20px;
   text-align: center;
   margin-top: 70px;
 }
 
-.chromeless, .chromeless:focus{
+.chromeless,
+.chromeless:focus {
   border: 0;
-  background: rgba(0,0,0,0);
+  background: rgba(0, 0, 0, 0);
   outline: 0;
 }
 
-.dropdown-menu>li>button{
+.dropdown-menu > li > button {
   display: block;
   padding: 3px 20px;
   clear: both;
@@ -282,10 +285,11 @@ body {
   text-align: left;
 }
 
-.dropdown-menu>li>button:focus, .dropdown-menu>li>button:hover {
-    color: #262626;
-    text-decoration: none;
-    background-color: #f5f5f5;
+.dropdown-menu > li > button:focus,
+.dropdown-menu > li > button:hover {
+  color: #262626;
+  text-decoration: none;
+  background-color: #f5f5f5;
 }
 
 .manage-page-tip {
@@ -295,200 +299,199 @@ body {
 
 /* Tweet placeholder start */
 
-.tweet.placeholder{
+.tweet.placeholder {
   height: 96px;
   margin-bottom: -1px;
 }
 
-.tweet.placeholder:hover{
-  color:initial;
+.tweet.placeholder:hover {
+  color: initial;
   text-decoration: initial;
   background-color: initial;
 }
 
-@keyframes placeHolderShimmer{
-    0%{
-        background-position: -550px 0
-    }
-    100%{
-        background-position: 550px 0
-    }
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -550px 0;
+  }
+  100% {
+    background-position: 550px 0;
+  }
 }
 
 .tweet .animated-background {
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-    animation-name: placeHolderShimmer;
-    animation-timing-function: linear;
-    background: #f6f7f8;
-    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
-    background-size: 1100px 104px;
-    height: 75px;
-    position: relative;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 1100px 104px;
+  height: 75px;
+  position: relative;
 }
 
 .background-masker {
-    background: #fff;
-    position: absolute;
+  background: #fff;
+  position: absolute;
 }
 
 .tweet .background-masker.header-top {
-    top: 0;
-    left: 48px;
-    right: 0;
-    height: 7px;
+  top: 0;
+  left: 48px;
+  right: 0;
+  height: 7px;
 }
 
 .tweet .background-masker.header-left {
-    top: 7px;
-    left: 48px;
-    right: 0;
-    height: 12px;
-    width: 10px;
+  top: 7px;
+  left: 48px;
+  right: 0;
+  height: 12px;
+  width: 10px;
 }
 
 .tweet .background-masker.header-right {
-    top: 7px;
-    left: 200px;
-    right: 0;
-    height: 12px;
+  top: 7px;
+  left: 200px;
+  right: 0;
+  height: 12px;
 }
 
 .tweet .background-masker.header-bottom {
-    top: 19px;
-    left: 48px;
-    right: 0;
-    height: 15px;
+  top: 19px;
+  left: 48px;
+  right: 0;
+  height: 15px;
 }
 
 .tweet .background-masker.content-first-left {
-    top: 34px;
-    left: 48px;
-    right: 0;
-    height: 8px;
-    width: 10px;
+  top: 34px;
+  left: 48px;
+  right: 0;
+  height: 8px;
+  width: 10px;
 }
 
 .tweet .background-masker.content-first-right {
-    top: 34px;
-    left: 500px;
-    right: 0;
-    height: 8px;
+  top: 34px;
+  left: 500px;
+  right: 0;
+  height: 8px;
 }
 
 .tweet .background-masker.content-first-bottom {
-    top: 42px;
-    left: 48px;
-    right: 0;
-    height: 6px;
+  top: 42px;
+  left: 48px;
+  right: 0;
+  height: 6px;
 }
 
 .tweet .background-masker.content-second-top {
-    top: 48px;
-    left: 0;
-    right: 0;
-    height: 4px;
+  top: 48px;
+  left: 0;
+  right: 0;
+  height: 4px;
 }
 
 .tweet .background-masker.content-second-left {
-    top: 52px;
-    left: 0px;
-    right: 0;
-    height: 8px;
-    width: 58px;
+  top: 52px;
+  left: 0px;
+  right: 0;
+  height: 8px;
+  width: 58px;
 }
 
 .tweet .background-masker.content-second-right {
-    top: 52px;
-    left: 400px;
-    right: 0;
-    height: 8px;
+  top: 52px;
+  left: 400px;
+  right: 0;
+  height: 8px;
 }
 
 .tweet .background-masker.content-second-bottom {
-    top: 60px;
-    left: 0;
-    right: 0;
-    height: 15px;
+  top: 60px;
+  left: 0;
+  right: 0;
+  height: 15px;
 }
-
 
 /* Tweet placeholder end */
 
 /* List placeholder start */
 
-.listslist.placeholder{
+.listslist.placeholder {
   height: 120px;
   padding: 10px 15px;
   padding-right: 30px;
 }
 
-@keyframes placeHolderShimmer2{
-    0%{
-        background-position: -200px 0
-    }
-    100%{
-        background-position: 200px 0
-    }
+@keyframes placeHolderShimmer2 {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
 }
 
 .listslist .animated-background {
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-    animation-name: placeHolderShimmer2;
-    animation-timing-function: linear;
-    background: #f6f7f8;
-    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
-    background-size: 400px 104px;
-    height: 120px;
-    position: relative;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer2;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 400px 104px;
+  height: 120px;
+  position: relative;
 }
 
-.listslist .background-masker.line-first-top{
+.listslist .background-masker.line-first-top {
   top: 0;
   left: 0;
   right: 0;
   height: 5px;
 }
 
-.listslist .background-masker.line-first-right{
+.listslist .background-masker.line-first-right {
   top: 5px;
   left: 50px;
   right: 0;
   height: 10px;
 }
 
-.listslist .background-masker.line-second-top{
+.listslist .background-masker.line-second-top {
   top: 15px;
   left: 0;
   right: 0;
   height: 25px;
 }
 
-.listslist .background-masker.line-second-right{
+.listslist .background-masker.line-second-right {
   top: 40px;
   left: 120px;
   right: 0;
   height: 10px;
 }
 
-.listslist .background-masker.line-third-top{
+.listslist .background-masker.line-third-top {
   top: 50px;
   left: 0;
   right: 0;
   height: 25px;
 }
 
-.listslist .background-masker.line-fourth-top{
+.listslist .background-masker.line-fourth-top {
   top: 85px;
   left: 0;
   right: 0;
   height: 25px;
 }
 
-.listslist .background-masker.line-fourth-right{
+.listslist .background-masker.line-fourth-right {
   top: 110px;
   left: 90px;
   right: 0;

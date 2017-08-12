@@ -9,12 +9,14 @@ import {
 
 import Tweet from "./Tweet";
 import TweetsListFooter from "./TweetsListFooter";
+import NoTweetsMsg from "./NoTweetsMsg";
 import TweetsListPlaceholder from "./TweetsListPlaceholder";
 
 export class TweetsList extends React.Component {
   static defaultProps = {
     tweets: null,
-    listId: null
+    listId: null,
+    list: null
   };
 
   static propTypes = {
@@ -23,6 +25,7 @@ export class TweetsList extends React.Component {
     ),
     loading: PropTypes.bool.isRequired,
     listId: PropTypes.string,
+    list: PropTypes.shape({ full_name: PropTypes.string.isRequired }),
     fetchTweets: PropTypes.func.isRequired,
     fetchMoreTweets: PropTypes.func.isRequired
   };
@@ -40,7 +43,7 @@ export class TweetsList extends React.Component {
   }
 
   render() {
-    const { tweets, loading, listId, fetchMoreTweets: fmt } = this.props;
+    const { tweets, loading, listId, list, fetchMoreTweets: fmt } = this.props;
     return (
       <div>
         <ul className="tweets-list">
@@ -51,7 +54,7 @@ export class TweetsList extends React.Component {
           )}
         </ul>
         {tweets.length === 0 &&
-          (loading ? <TweetsListPlaceholder /> : "No tweets found!")}
+          (loading ? <TweetsListPlaceholder /> : <NoTweetsMsg list={list} />)}
         {tweets.length !== 0 &&
           <TweetsListFooter loading={loading} loadMore={() => fmt(listId)} />}
       </div>
@@ -59,10 +62,13 @@ export class TweetsList extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
   return {
     tweets: state.tweets.tweets,
-    loading: state.tweets.loadingTweets
+    loading: state.tweets.loadingTweets,
+    list: state.tweets.lists
+      ? state.tweets.lists.find(l => l.id_str === props.listId)
+      : null
   };
 }
 

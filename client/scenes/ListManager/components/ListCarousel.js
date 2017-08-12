@@ -32,13 +32,30 @@ class ListCarousel extends Component {
       return (
         <div className="panel panel-default">
           <div className="list-carousel panel-body">
-            <ul>
-              {lists.map(list =>
-                <li key={list.id_str}>
-                  <List list={list} fetchMembers={fm} addMemberToList={aml} />
-                </li>
-              )}
-            </ul>
+            {lists.length > 0
+              ? <ul>
+                  {lists.map(list =>
+                    <li key={list.id_str}>
+                      <List
+                        list={list}
+                        fetchMembers={fm}
+                        addMemberToList={aml}
+                      />
+                    </li>
+                  )}
+                </ul>
+              : <div className="alert alert-info" role="alert">
+                  <p>
+                    You dont have any list to show here.{" "}
+                    <a
+                      href="https://twitter.com/lists"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <b>Create a list</b>
+                    </a>
+                  </p>
+                </div>}
           </div>
         </div>
       );

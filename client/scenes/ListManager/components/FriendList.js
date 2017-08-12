@@ -28,13 +28,26 @@ class FriendList extends Component {
       return (
         <div className="panel panel-default">
           <div className="friends-list panel-body">
-            <ul>
-              {friends.map(friend =>
-                <li key={friend.id_str}>
-                  <Friend friend={friend} />
-                </li>
-              )}
-            </ul>
+            {friends.length > 0
+              ? <ul>
+                  {friends.map(friend =>
+                    <li key={friend.id_str}>
+                      <Friend friend={friend} />
+                    </li>
+                  )}
+                </ul>
+              : <div className="alert alert-info" role="alert">
+                  <p>
+                    Start following people and you’ll see them here.{" "}
+                    <a
+                      href="https://twitter.com/who_to_follow/suggestions"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <b>Find people to follow</b>
+                    </a>
+                  </p>
+                </div>}
           </div>
         </div>
       );
