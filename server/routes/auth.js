@@ -1,4 +1,5 @@
 import express from "express";
+import os from "os";
 import passport from "passport";
 import { Strategy as TwitterStrategy } from "passport-twitter";
 import jwt from "jsonwebtoken";
@@ -12,7 +13,7 @@ passport.use(
     {
       consumerKey: config.twitterConsumerKey,
       consumerSecret: config.twitterConsumerSecret,
-      callbackURL: "http://localhost:8000/auth/twitter/callback"
+      callbackURL: "/auth/twitter/callback"
     },
     function(token, tokenSecret, profile, done) {
       userStore.set(profile.id, { token, tokenSecret }, function() {
